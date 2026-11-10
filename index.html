@@ -139,7 +139,8 @@ textarea{resize:vertical}
 const CONFIG = {
   // URL Web App của Google Apps Script (xem README, bước 2). Để trống thì không gửi dữ liệu.
   SUBMIT_URL: "",
-  // Link đặt lịch (Google Calendar Booking, Calendly...). Để trống thì nút đặt lịch dẫn về email.
+  // Link sự kiện Calendly, ví dụ "https://calendly.com/ten-cua-ban/doc-ket-qua".
+  // Link Calendly mở dạng cửa sổ nổi, tự điền sẵn tên, email, công ty. Link khác thì mở tab mới. Để trống thì mở email.
   BOOKING_URL: "",
   CONTACT_EMAIL: "phan.hv@deliveringhappiness.vn"
 };
@@ -499,12 +500,47 @@ function toc(){
 
 
 function bookingHref(){
+  if (isCalendly()) return calendlyUrl();
   return CONFIG.BOOKING_URL || `mailto:${CONFIG.CONTACT_EMAIL}?subject=${encodeURIComponent("Đặt lịch đọc kết quả khảo sát CEO – "+(window.__co||""))}`;
 }
+/* ----- Calendly ----- */
+const isCalendly = () => /calendly\.com\//.test(CONFIG.BOOKING_URL);
+function calendlyUrl(){
+  const p = S.p || {}, u = new URL(CONFIG.BOOKING_URL);
+  if (p.name) u.searchParams.set("name", p.name);
+  if (p.email) u.searchParams.set("email", p.email);
+  if (p.company) u.searchParams.set("a1", p.company);   // câu hỏi tuỳ chỉnh số 1 trong Calendly: "Tên công ty"
+  if (p.phone) u.searchParams.set("a2", p.phone);       // câu hỏi tuỳ chỉnh số 2: "Số điện thoại / Zalo"
+  u.searchParams.set("utm_source", "ceo-survey");
+  if (S.id) u.searchParams.set("utm_content", S.id);    // khớp lịch hẹn với dòng kết quả trong Sheet
+  return u.toString();
+}
+let calLoading = null;
+function loadCalendly(){
+  if (window.Calendly) return Promise.resolve();
+  if (calLoading) return calLoading;
+  const css = document.createElement("link"); css.rel="stylesheet"; css.href="https://assets.calendly.com/assets/external/widget.css"; document.head.appendChild(css);
+  calLoading = new Promise((ok,no)=>{ const sc=document.createElement("script"); sc.src="https://assets.calendly.com/assets/external/widget.js"; sc.onload=ok; sc.onerror=no; document.head.appendChild(sc); });
+  return calLoading;
+}
+function book(ev){
+  track("booking");
+  if (!isCalendly()) return true;               // để link mở bình thường
+  ev.preventDefault();
+  loadCalendly().then(()=>window.Calendly.initPopupWidget({url: calendlyUrl()}))
+    .catch(()=>window.open(calendlyUrl(), "_blank", "noopener"));
+  return false;
+}
+window.addEventListener("message", e=>{
+  if (e.origin==="https://calendly.com" && e.data && e.data.event==="calendly.event_scheduled") {
+    track("booked");
+    const st=document.getElementById("sendst"); if (st) st.textContent="Đã đặt lịch thành công. Lời mời họp đã được gửi vào email của anh/chị.";
+  }
+});
 function cta(){
   return `<div class="cta"><p class="ctah">Đặt lịch 45 phút đọc kết quả cùng chuyên gia Delivering Happiness Việt Nam</p>
   <p class="muted" style="margin:0 0 14px">Cùng đọc sâu kết quả, bao gồm phần giá trị đang thực sống, và chọn 1–2 ưu tiên phù hợp nhất với tổ chức của anh/chị. Miễn phí, trực tuyến.</p>
-  <p style="margin:0"><a class="ctabtn" href="${bookingHref()}" target="_blank" rel="noopener" onclick="track('booking')">Chọn giờ phù hợp</a></p></div>
+  <p style="margin:0"><a class="ctabtn" href="${bookingHref()}" target="_blank" rel="noopener" onclick="return book(event)">Chọn giờ phù hợp</a></p></div>
   <div class="cta cta2"><p class="ctah">Bước tiếp theo: nghe chính đội ngũ nói</p>
   <p class="muted" style="margin:0 0 14px">Báo cáo này là góc nhìn của anh/chị. Khảo sát đội ngũ (ẩn danh, khoảng 10 phút) cho thấy những chỗ đội ngũ cảm nhận khác với CEO, đó thường là nơi có đòn bẩy lớn nhất.</p>
   <p style="margin:0" class="team-slot"><button class="ctabtn ghostcta" onclick="teamInterest(this)">Tôi muốn khảo sát đội ngũ</button></p></div>`;
@@ -960,7 +996,7 @@ function finish(){
   if (!S.id) { S.id = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now())+Math.random().toString(16).slice(2)); save(); }
   app().innerHTML="";
   document.getElementById("bar").innerHTML = `<div class="bar"><div><b>Báo cáo của anh/chị đã sẵn sàng.</b><br><span class="muted small" id="sendst">Đang gửi kết quả về DHV…</span></div>
-    <div class="actions" style="margin:0"><a class="btn" style="text-decoration:none;background:var(--good);color:#fff" href="${bookingHref()}" target="_blank" rel="noopener" onclick="track('booking')">Đặt lịch đọc kết quả</a><button class="btn ghost" id="pdfbtn" onclick="makePdf()">Tải báo cáo PDF</button><button class="btn ghost" onclick="go(S.i-1)">Sửa câu trả lời</button></div><p id="pdfst" class="muted small" role="status" style="flex-basis:100%;margin:0"></p></div><div id="copybox"></div>`;
+    <div class="actions" style="margin:0"><a class="btn" style="text-decoration:none;background:var(--good);color:#fff" href="${bookingHref()}" target="_blank" rel="noopener" onclick="return book(event)">Đặt lịch đọc kết quả</a><button class="btn ghost" id="pdfbtn" onclick="makePdf()">Tải báo cáo PDF</button><button class="btn ghost" onclick="go(S.i-1)">Sửa câu trả lời</button></div><p id="pdfst" class="muted small" role="status" style="flex-basis:100%;margin:0"></p></div><div id="copybox"></div>`;
   render(toData(S,S.ts), false);
   submitResult();
 }

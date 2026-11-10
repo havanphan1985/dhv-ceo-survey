@@ -13,14 +13,17 @@ Trang khảo sát tĩnh (GitHub Pages). Kết quả được gửi về Google S
    - Execute as: **Me**
    - Who has access: **Anyone**
    Bấm Deploy, cấp quyền, rồi sao chép **Web app URL** (dạng `https://script.google.com/macros/s/.../exec`).
-3. **Cấu hình trang**: trong `index.html`, điền `CONFIG.SUBMIT_URL` = Web app URL, `CONFIG.BOOKING_URL` = link đặt lịch.
-4. **GitHub Pages**: *Settings → Pages → Source: Deploy from a branch → main / (root)*. Sau 1–2 phút trang có ở
+3. **Calendly**: tạo sự kiện (ví dụ "Đọc kết quả khảo sát – 45 phút", địa điểm Google Meet). Trong *Booking questions*, đặt
+   **câu hỏi 1 = "Tên công ty"**, **câu hỏi 2 = "Số điện thoại / Zalo"** – trang khảo sát tự điền sẵn hai câu này cùng tên và email.
+4. **Cấu hình trang**: trong `index.html`, điền `CONFIG.SUBMIT_URL` = Web app URL, `CONFIG.BOOKING_URL` = link sự kiện Calendly.
+5. **GitHub Pages**: *Settings → Pages → Source: Deploy from a branch → main / (root)*. Sau 1–2 phút trang có ở
    `https://<tài-khoản>.github.io/dhv-ceo-survey/`.
 
 ## Dùng dữ liệu
 - Mỗi CEO là một dòng trong tab **Kết quả**: thông tin liên hệ, điểm tổng hợp, câu trả lời từng câu, câu hỏi mở.
 - Cột **Link báo cáo** mở bản dành cho DHV (có trang câu hỏi mở) → bấm *Tải PDF*.
-- **Bấm đặt lịch** / **Muốn khảo sát đội ngũ** ghi thời điểm CEO bấm CTA. Cột **Trạng thái DHV** để DHV tự theo dõi.
+- **Bấm đặt lịch** / **Đã đặt lịch (Calendly)** / **Muốn khảo sát đội ngũ** ghi thời điểm CEO bấm CTA và đặt lịch xong.
+- Trong Calendly, mỗi lịch hẹn có `utm_content` = ID của dòng trong Sheet. Cột **Trạng thái DHV** để DHV tự theo dõi.
 - Mỗi bài nộp mới gửi email thông báo cho chủ Sheet (sửa hàm `notify_` để tắt).
 
 Lưu ý: khi sửa `Code.gs`, phải *Deploy → Manage deployments → Edit → Version: New version* thì thay đổi mới có hiệu lực.

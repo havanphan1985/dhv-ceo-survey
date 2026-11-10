@@ -11,7 +11,7 @@ const HEAD = ['Thời gian','ID','Họ tên','Công ty','Email','SĐT/Zalo','Ng�
   'Chỉ số động lực','Cảm nhận công việc','Phát huy năng lực','Hệ thống tổ chức','Nguồn lực cá nhân',
   'Lãnh đạo bằng VH','Mức độ chủ đích','Hệ thống VH','Cách quản trị','Cấp độ văn hoá',
   'Điểm mù','Cờ cảnh báo','C1 – Câu hỏi mở','Link báo cáo',
-  'Bấm đặt lịch','Muốn khảo sát đội ngũ','Trạng thái DHV']
+  'Bấm đặt lịch','Đã đặt lịch (Calendly)','Muốn khảo sát đội ngũ','Trạng thái DHV']
   .concat(CODES.map(c => 'Đ ' + c), CODES.map(c => 'TL ' + c));
 
 function sheet_() {
@@ -47,6 +47,7 @@ function doPost(e) {
     if (d.type === 'event') {
       if (!row) return out_({ok:false});
       const col = d.event === 'booking' ? HEAD.indexOf('Bấm đặt lịch') + 1
+                : d.event === 'booked' ? HEAD.indexOf('Đã đặt lịch (Calendly)') + 1
                 : d.event === 'team_survey' ? HEAD.indexOf('Muốn khảo sát đội ngũ') + 1 : 0;
       if (col) sh.getRange(row, col).setValue(new Date());
       return out_({ok:true});
@@ -57,12 +58,12 @@ function doPost(e) {
     const vals = [new Date(d.ts || Date.now()), d.id, p.name, p.company, p.email, p.phone, p.industry, p.years, p.staff,
       p.left12m, p.leftEarly, s.turnover, s.early,
       s.overall, s.exp, s.fun, s.org, s.per, s.lead, s.int, s.sys, s.gov, s.level,
-      s.blind, s.flags, o.C1, d.link, '', '', 'Mới']
+      s.blind, s.flags, o.C1, d.link, '', '', '', 'Mới']
       .concat(CODES.map(c => sc[c]), CODES.map(c => a[c])).map(safe_);
     // Ô link báo cáo có thể dài; Sheet giới hạn 50.000 ký tự/ô
     if (row) {
-      const keep = sh.getRange(row, HEAD.indexOf('Bấm đặt lịch') + 1, 1, 3).getValues()[0];
-      vals.splice(HEAD.indexOf('Bấm đặt lịch'), 3, keep[0], keep[1], keep[2] || 'Mới');
+      const keep = sh.getRange(row, HEAD.indexOf('Bấm đặt lịch') + 1, 1, 4).getValues()[0];
+      vals.splice(HEAD.indexOf('Bấm đặt lịch'), 4, keep[0], keep[1], keep[2], keep[3] || 'Mới');
       sh.getRange(row, 1, 1, vals.length).setValues([vals]);
     } else {
       sh.appendRow(vals);
