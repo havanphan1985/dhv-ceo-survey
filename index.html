@@ -116,6 +116,8 @@ textarea{resize:vertical}
 @media print{#app,#bar{display:none}}
 .cta{border:2px solid var(--good);border-radius:12px;padding:20px 22px;margin:28px 0 8px;background:var(--soft)}
 .ctah{font-size:18px;font-weight:800;margin:0 0 6px;max-width:none}
+.bookbar{text-decoration:none;background:var(--good)!important;color:#fff!important}
+.ctadone{display:inline-block;font-weight:600;color:var(--good);padding:10px 0}
 .cta2{border-color:var(--line);background:var(--paper)}
 .ghostcta{border:2px solid var(--good);background:transparent;color:var(--ink);font:inherit;font-weight:700;cursor:pointer}
 .ctabtn{display:inline-block;background:var(--good);color:#fff;font-weight:700;text-decoration:none;border-radius:10px;padding:12px 22px}
@@ -523,9 +525,24 @@ function loadCalendly(){
   calLoading = new Promise((ok,no)=>{ const sc=document.createElement("script"); sc.src="https://assets.calendly.com/assets/external/widget.js"; sc.onload=ok; sc.onerror=no; document.head.appendChild(sc); });
   return calLoading;
 }
+/* Mỗi CTA xuất hiện ở nhiều chỗ (thanh trên cùng, trang Tổng quan, trang cuối).
+   Khi CEO đã đặt lịch / đã đăng ký khảo sát đội ngũ, mọi nút cùng loại chuyển sang trạng thái "đã xong". */
+function bookSlot(cls){
+  if (S.booked) return `<span class="ctadone">✓ Đã đặt lịch. Lời mời họp đã được gửi vào email của anh/chị.</span>`;
+  return `<a class="${cls}" href="${bookingHref()}" target="_blank" rel="noopener" onclick="return book(event)">${cls==="ctabtn"?"Chọn giờ phù hợp":"Đặt lịch đọc kết quả"}</a>`;
+}
+function teamSlot(){
+  if (S.team) return `<span class="ctadone">✓ Đã ghi nhận. DHV sẽ liên hệ anh/chị để chuẩn bị khảo sát đội ngũ.</span>`;
+  return `<button class="ctabtn ghostcta" onclick="teamInterest()">Tôi muốn khảo sát đội ngũ</button>`;
+}
+function refreshCtas(){
+  document.querySelectorAll(".book-slot").forEach(el=>el.innerHTML=bookSlot(el.dataset.cls));
+  document.querySelectorAll(".team-slot").forEach(el=>el.innerHTML=teamSlot());
+}
+function markBooked(){ S.booked=true; save(); refreshCtas(); }
 function book(ev){
   track("booking");
-  if (!isCalendly()) return true;               // để link mở bình thường
+  if (!isCalendly()) { setTimeout(markBooked, 300); return true; }   // không có Calendly: coi như đã chuyển sang đặt lịch
   ev.preventDefault();
   loadCalendly().then(()=>window.Calendly.initPopupWidget({url: calendlyUrl()}))
     .catch(()=>window.open(calendlyUrl(), "_blank", "noopener"));
@@ -533,17 +550,17 @@ function book(ev){
 }
 window.addEventListener("message", e=>{
   if (e.origin==="https://calendly.com" && e.data && e.data.event==="calendly.event_scheduled") {
-    track("booked");
-    const st=document.getElementById("sendst"); if (st) st.textContent="Đã đặt lịch thành công. Lời mời họp đã được gửi vào email của anh/chị.";
+    track("booked"); markBooked();
+    const st=document.getElementById("sendst"); if (st) st.textContent="Kết quả đã được gửi về DHV.";
   }
 });
 function cta(){
   return `<div class="cta"><p class="ctah">Đặt lịch 30 phút đọc kết quả cùng chuyên gia Delivering Happiness Việt Nam</p>
   <p class="muted" style="margin:0 0 14px">Cùng đọc sâu kết quả, bao gồm phần giá trị đang thực sống, và chọn 1–2 ưu tiên phù hợp nhất với tổ chức của anh/chị. Miễn phí, trực tuyến.</p>
-  <p style="margin:0"><a class="ctabtn" href="${bookingHref()}" target="_blank" rel="noopener" onclick="return book(event)">Chọn giờ phù hợp</a></p></div>
+  <p style="margin:0" class="book-slot" data-cls="ctabtn">${bookSlot("ctabtn")}</p></div>
   <div class="cta cta2"><p class="ctah">Bước tiếp theo: nghe chính đội ngũ nói</p>
   <p class="muted" style="margin:0 0 14px">Báo cáo này là góc nhìn của anh/chị. Khảo sát đội ngũ (ẩn danh, khoảng 10 phút) cho thấy những chỗ đội ngũ cảm nhận khác với CEO, đó thường là nơi có đòn bẩy lớn nhất.</p>
-  <p style="margin:0" class="team-slot"><button class="ctabtn ghostcta" onclick="teamInterest(this)">Tôi muốn khảo sát đội ngũ</button></p></div>`;
+  <p style="margin:0" class="team-slot">${teamSlot()}</p></div>`;
 }
 
 function whyPage(){
@@ -996,7 +1013,7 @@ function finish(){
   if (!S.id) { S.id = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now())+Math.random().toString(16).slice(2)); save(); }
   app().innerHTML="";
   document.getElementById("bar").innerHTML = `<div class="bar"><div><b>Báo cáo của anh/chị đã sẵn sàng.</b><br><span class="muted small" id="sendst">Đang gửi kết quả về DHV…</span></div>
-    <div class="actions" style="margin:0"><a class="btn" style="text-decoration:none;background:var(--good);color:#fff" href="${bookingHref()}" target="_blank" rel="noopener" onclick="return book(event)">Đặt lịch đọc kết quả</a><button class="btn ghost" id="pdfbtn" onclick="makePdf()">Tải báo cáo PDF</button><button class="btn ghost" onclick="go(S.i-1)">Sửa câu trả lời</button></div><p id="pdfst" class="muted small" role="status" style="flex-basis:100%;margin:0"></p></div><div id="copybox"></div>`;
+    <div class="actions" style="margin:0"><span class="book-slot" data-cls="btn bookbar">${bookSlot("btn bookbar")}</span><button class="btn ghost" id="pdfbtn" onclick="makePdf()">Tải báo cáo PDF</button><button class="btn ghost" onclick="go(S.i-1)">Sửa câu trả lời</button></div><p id="pdfst" class="muted small" role="status" style="flex-basis:100%;margin:0"></p></div><div id="copybox"></div>`;
   render(toData(S,S.ts), false);
   submitResult();
 }
@@ -1130,7 +1147,7 @@ async function submitResult(){
   try{
     await post(payload);
     S.sent = true; save();
-    if (st) st.textContent = "Kết quả đã được gửi về DHV. Bước tiếp theo: chọn giờ đọc kết quả cùng chuyên gia DHV.";
+    if (st) st.textContent = S.booked ? "Kết quả đã được gửi về DHV." : "Kết quả đã được gửi về DHV. Bước tiếp theo: chọn giờ đọc kết quả cùng chuyên gia DHV.";
   }catch(e){
     if (st) st.textContent = CONFIG.SUBMIT_URL ? "Chưa gửi được kết quả (mất kết nối?). Tải lại trang để thử gửi lại." : "Chế độ thử: chưa cấu hình nơi nhận dữ liệu.";
   }
@@ -1141,9 +1158,9 @@ function track(ev){
   try{ if (navigator.sendBeacon && navigator.sendBeacon(CONFIG.SUBMIT_URL, new Blob([body],{type:"text/plain;charset=utf-8"}))) return; }catch(e){}
   post(JSON.parse(body)).catch(()=>{});
 }
-function teamInterest(btn){
+function teamInterest(){
   track("team_survey");
-  btn.closest(".team-slot").innerHTML = `<b>Đã ghi nhận.</b> <span class="muted">DHV sẽ liên hệ anh/chị để chuẩn bị khảo sát đội ngũ.</span>`;
+  S.team=true; save(); refreshCtas();
 }
 
 /* ----- khởi động ----- */
