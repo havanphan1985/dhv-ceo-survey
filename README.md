@@ -13,7 +13,7 @@ Trang khảo sát tĩnh (GitHub Pages). Kết quả được gửi về Google S
    - Execute as: **Me**
    - Who has access: **Anyone**
    Bấm Deploy, cấp quyền, rồi sao chép **Web app URL** (dạng `https://script.google.com/macros/s/.../exec`).
-3. **Calendly**: tạo sự kiện (ví dụ "Đọc kết quả khảo sát – 45 phút", địa điểm Google Meet). Trong *Booking questions*, đặt
+3. **Calendly**: tạo sự kiện (ví dụ "Đọc kết quả khảo sát – 30 phút", địa điểm Google Meet). Trong *Booking questions*, đặt
    **câu hỏi 1 = "Tên công ty"**, **câu hỏi 2 = "Số điện thoại / Zalo"** – trang khảo sát tự điền sẵn hai câu này cùng tên và email.
 4. **Cấu hình trang**: trong `index.html`, điền `CONFIG.SUBMIT_URL` = Web app URL, `CONFIG.BOOKING_URL` = link sự kiện Calendly.
 5. **GitHub Pages**: *Settings → Pages → Source: Deploy from a branch → main / (root)*. Sau 1–2 phút trang có ở

@@ -24,7 +24,7 @@ function sheet_() {
 // Chặn chèn công thức: ô bắt đầu bằng = + - @ được thêm dấu '
 function safe_(v) {
   if (v == null) return '';
-  if (typeof v === 'number') return v;
+  if (typeof v === 'number' || v instanceof Date) return v;
   const s = String(v).slice(0, 5000);
   return /^[=+\-@]/.test(s) ? "'" + s : s;
 }
@@ -55,7 +55,7 @@ function doPost(e) {
 
     if (d.type !== 'submit') return out_({ok:false});
     const p = d.profile || {}, s = d.summary || {}, a = d.answers || {}, sc = d.scores || {}, o = d.open || {};
-    const vals = [new Date(d.ts || Date.now()), d.id, p.name, p.company, p.email, p.phone, p.industry, p.years, p.staff,
+    const vals = [new Date(d.ts || Date.now()), d.id, p.name, p.company, p.email, p.phone ? "'" + p.phone : '', p.industry, p.years, p.staff,
       p.left12m, p.leftEarly, s.turnover, s.early,
       s.overall, s.exp, s.fun, s.org, s.per, s.lead, s.int, s.sys, s.gov, s.level,
       s.blind, s.flags, o.C1, d.link, '', '', '', 'Mới']
