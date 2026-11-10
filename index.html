@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Khảo sát Động lực & Văn hoá tổ chức dành cho CEO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#E9ECF1; --paper:#FFFFFF; --ink:#1F2A44; --muted:#5B6478; --line:#D9DEE7; --soft:#F4F6F9;
+  --good:#1FAF5A; --mid:#F7C928; --weak:#FF8A2B; --bad:#EE3B3B; --none:#B8BEC9;
+  --onbadge:#FFFFFF; --accent:#1F2A44;
+  color-scheme: light;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#11151D; --paper:#1A202C; --ink:#E7EBF2; --muted:#A3ACBD; --line:#2E3647; --soft:#222A38;
+    --good:#4DAF70; --mid:#E5B43A; --weak:#E8874A; --bad:#D6574F; --none:#596276; --accent:#E7EBF2;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#11151D; --paper:#1A202C; --ink:#E7EBF2; --muted:#A3ACBD; --line:#2E3647; --soft:#222A38;
+  --good:#4DAF70; --mid:#E5B43A; --weak:#E8874A; --bad:#D6574F; --none:#596276; --accent:#E7EBF2;
+  color-scheme: dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:15px;line-height:1.6}
+.page{max-width:820px;margin:24px auto;background:var(--paper);padding:56px 64px;border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+@media (max-width:700px){.page{margin:0 0 10px;padding:32px 20px;border-radius:0}}
+h1{font-size:34px;line-height:1.2;margin:0 0 8px;font-weight:800;letter-spacing:-.01em}
+h2{font-size:26px;line-height:1.25;margin:0 0 6px;font-weight:700}
+h3{font-size:18px;margin:28px 0 6px;font-weight:700}
+p{margin:0 0 12px;max-width:68ch}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+.foot{margin-top:36px;padding-top:12px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+/* score badge: a coloured square, echoing the cover */
+.badge{display:inline-flex;align-items:center;justify-content:center;min-width:52px;height:52px;padding:0 8px;border-radius:6px;color:var(--onbadge);font-weight:800;font-size:20px;flex:none}
+.badge.lg{min-width:96px;height:96px;font-size:40px;border-radius:10px}
+.badge.sm{min-width:40px;height:32px;font-size:15px;border-radius:5px}
+.c-good{background:var(--good)} .c-mid{background:var(--mid);color:#3A2C00} .c-weak{background:var(--weak)} .c-bad{background:var(--bad)} .c-none{background:var(--none)}
+.headrow{display:flex;gap:20px;align-items:center;margin:8px 0 20px}
+.sec-sub{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 8px}
+.chip{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:8px;padding:6px 12px 6px 6px;font-size:14px}
+.item{display:flex;gap:18px;padding:20px 0;border-top:1px solid var(--line)}
+.item:first-of-type{border-top:none}
+.item h4{margin:2px 0 6px;font-size:16px}
+.ans{background:var(--soft);border-radius:6px;padding:10px 14px;margin-top:8px;font-size:14px}
+.ans b{font-weight:600}
+/* cover */
+.cover{min-height:900px;display:flex;flex-direction:column}
+.cover .brand{font-weight:700;color:var(--muted);font-size:14px}
+.grid32{display:grid;grid-template-columns:repeat(8,1fr);gap:10px;max-width:520px;margin:56px 0 40px}
+.grid32 span{aspect-ratio:1;border-radius:6px;display:block}
+.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:13px;color:var(--muted)}
+.legend i{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:-2px;margin-right:6px}
+/* lists */
+.toc{list-style:none;padding:0;margin:16px 0}
+.toc li{display:flex;justify-content:space-between;border-bottom:1px dotted var(--line);padding:6px 0}
+.hl{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+@media (max-width:700px){.hl{grid-template-columns:1fr}}
+.hl ol{list-style:none;padding:0;margin:0}
+.hl li{display:flex;align-items:center;gap:12px;padding:6px 0;border-bottom:1px solid var(--line);font-size:14px}
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+@media (max-width:700px){.summary{grid-template-columns:1fr}}
+.summary div{background:var(--soft);border-radius:8px;padding:14px 16px}
+.summary strong{display:block;font-size:22px}
+.flag{border-left:4px solid var(--bad);padding:8px 14px;margin:10px 0;background:var(--soft);border-radius:0 6px 6px 0}
+.flag b{display:block}
+.ladder{display:flex;flex-direction:column-reverse;gap:6px;margin:16px 0}
+.ladder div{display:flex;gap:12px;align-items:center;padding:8px 12px;border-radius:6px;border:1px solid var(--line);font-size:14px}
+.ladder div.on{border:2px solid var(--accent);font-weight:700}
+.ladder span.n{font-weight:800;width:22px}
+.svgwrap{overflow-x:auto;margin:16px 0}
+svg text{font-family:"Be Vietnam Pro",system-ui,sans-serif}
+.note{border:1px dashed var(--line);border-radius:8px;padding:18px 20px;margin:18px 0}
+.tbl{width:100%;border-collapse:collapse;font-size:14px}
+.tbl td{border-top:1px solid var(--line);padding:8px 6px;vertical-align:top}
+@media print{
+  body{background:#fff}
+  .page{box-shadow:none;margin:0;max-width:none;page-break-after:always;border-radius:0}
+}
+
+.sv{min-height:70vh}
+.brand{font-weight:700;font-size:14px}
+.prog{height:6px;background:var(--soft);border-radius:3px;overflow:hidden}
+.prog div{height:100%;background:var(--good);transition:width .3s}
+.progtxt{text-align:right;margin:4px 0 18px}
+.sec{margin-bottom:8px}
+.qt{font-size:22px;line-height:1.4;margin-bottom:20px}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{text-align:left;font:inherit;font-size:16px;color:var(--ink);background:var(--paper);border:1.5px solid var(--line);border-radius:10px;padding:14px 16px;cursor:pointer;min-height:52px}
+.opt:hover{border-color:var(--muted)}
+.opt.on{border-color:var(--good);background:var(--soft);box-shadow:inset 4px 0 0 var(--good)}
+.opt.alt{color:var(--muted);border-style:dashed}
+.opt.chk.on::after{content:" ✓";font-weight:700;color:var(--good)}
+.opt:focus-visible,.btn:focus-visible,.link:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--mid);outline-offset:2px}
+.actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:22px 0 4px}
+.btn{font:inherit;font-weight:700;font-size:16px;background:var(--ink);color:var(--paper);border:none;border-radius:10px;padding:13px 22px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.link{font:inherit;background:none;border:none;color:var(--muted);text-decoration:underline;cursor:pointer;padding:12px 0;margin-top:14px}
+.fld{display:block;margin:0 0 16px}
+.fld span{display:block;font-weight:600;margin-bottom:6px}
+.fld small{display:block;margin-top:4px}
+input,textarea{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--paper);border:1.5px solid var(--line);border-radius:10px;padding:12px 14px}
+textarea{resize:vertical}
+.err{color:var(--bad);font-weight:600;min-height:1em;margin:6px 0 0}
+.bar{max-width:820px;margin:24px auto 0;background:var(--paper);border-radius:4px;padding:20px 24px;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.sendbox{max-width:820px;margin:12px auto 0;background:var(--paper);border-radius:4px;padding:20px 24px;border:2px solid var(--good)}
+@media (max-width:700px){.bar,.sendbox{margin:0 0 10px;border-radius:0}}
+@media print{#app,#bar{display:none}}
+.cta{border:2px solid var(--good);border-radius:12px;padding:20px 22px;margin:28px 0 8px;background:var(--soft)}
+.ctah{font-size:18px;font-weight:800;margin:0 0 6px;max-width:none}
+.cta2{border-color:var(--line);background:var(--paper)}
+.ghostcta{border:2px solid var(--good);background:transparent;color:var(--ink);font:inherit;font-weight:700;cursor:pointer}
+.ctabtn{display:inline-block;background:var(--good);color:#fff;font-weight:700;text-decoration:none;border-radius:10px;padding:12px 22px}
+.ph{background:#FFF3B0;color:#5A4A00;border-radius:4px;padding:1px 6px;font-size:13px;font-weight:600}
+.basis{display:inline-block;margin-top:8px;font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:2px 10px}
+.basis.low{color:#8A4B00;border-color:#E8A25A;background:#FFF4E5}
+.disc{border:2px solid var(--accent);border-radius:12px;padding:16px 20px;margin:14px 0 22px}
+.disch{font-weight:800;font-size:16px;margin:0 0 6px}
+.discline{font-size:13px;color:var(--muted);border-left:3px solid var(--line);padding-left:10px;margin:0 0 16px}
+.flag.chk{border-left-color:var(--mid)}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<div id="bar"></div>
+<div id="report"></div>
+<script>
+/* ===================== CẤU HÌNH (sửa ở đây) ===================== */
+const CONFIG = {
+  // URL Web App của Google Apps Script (xem README, bước 2). Để trống thì không gửi dữ liệu.
+  SUBMIT_URL: "",
+  // Link đặt lịch (Google Calendar Booking, Calendly...). Để trống thì nút đặt lịch dẫn về email.
+  BOOKING_URL: "",
+  CONTACT_EMAIL: "phan.hv@deliveringhappiness.vn"
+};
+/* ===================== DỮ LIỆU MẪU (sẽ thay bằng câu trả lời thật) ===================== */
+const SAMPLE = {
+  company: "Công ty Mẫu (dữ liệu giả định)",
+  date: "Tháng 10/2026",
+  staff: 45, left12m: 14, leftEarly: 6,
+  ans: {A1:"c",A2:"b",A3:"c",A4:"b",A5:"b",A6:"b",A7:"c",A8:"d",A9:"a",A10:"b",A11:"b",A12:"e",
+        A13:"b",A14:"c",A15:"b",A16:"b",
+        B1:"b",B2:"a",B3:"b",B4:"c",B5:"c",B6:"b",B7:"a",B8:["Khen thưởng, ghi nhận"],B9:"b",
+        B10:"b",B11:"e",B12:"b",B13:"b",B14:"a"}
+};
+
+/* ===================== NỘI DUNG CÂU HỎI & DIỄN GIẢI ===================== */
+const Q = {
+A1:{n:"Cảm xúc tích cực (niềm tự hào)",
+ why:"Nhân viên chỉ giới thiệu người thân, bạn bè vào làm khi họ thật sự tự hào về nơi mình làm việc. Đây là thước đo niềm tự hào khó giả nhất.",
+ q:"Trong 12 tháng qua, bao nhiêu % người mới đến từ giới thiệu của chính nhân viên?",
+ o:["Không có ai","Dưới 10%","10–30%","Trên 30%"],
+ i:["Chưa có ai được nhân viên giới thiệu. Đội ngũ có thể hài lòng với công việc, nhưng chưa đủ tự hào để “đặt uy tín cá nhân” vào công ty.",
+    "Có một vài trường hợp giới thiệu, thường từ những người gắn bó lâu. Niềm tự hào có, nhưng chưa lan ra toàn đội.",
+    "Giới thiệu nội bộ đã là một kênh tuyển dụng thực sự. Đội ngũ tin rằng đây là nơi đáng làm việc.",
+    "Hơn 30% người mới đến từ nhân viên giới thiệu. Đây là dấu hiệu rất mạnh của niềm tự hào, và là lợi thế tuyển dụng nên khuếch đại."]},
+A2:{n:"Cảm xúc tiêu cực (vắng căng thẳng)",
+ why:"Căng thẳng và bực bội thỉnh thoảng là bình thường. Khi chúng lặp lại hằng ngày, chúng bào mòn năng lượng và đẩy người giỏi ra đi.",
+ q:"Trong tháng qua, anh/chị nghe nhân viên than quá tải, chờ duyệt, làm trùng lặp, hoặc thấy căng thẳng bao lâu một lần?",
+ o:["Gần như hằng ngày","Hằng tuần","Vài lần trong tháng","Hiếm khi, và được xử lý tận gốc trong vòng một tuần"],
+ i:["Căng thẳng diễn ra gần như hằng ngày. Nguyên nhân thường nằm ở hệ thống (quá tải, chờ duyệt, việc trùng lặp) hơn là ở cá nhân.",
+    "Căng thẳng xuất hiện hằng tuần. Đội ngũ đang chịu đựng được, nhưng cần tìm ra 1–2 “điểm nghẽn” gây ra phần lớn bực bội.",
+    "Căng thẳng có nhưng không thường trực. Mức này lành mạnh với hầu hết doanh nghiệp đang tăng trưởng.",
+    "Căng thẳng hiếm khi xảy ra và được xử lý tận gốc. Lưu ý: nếu câu trả lời dựa trên việc “ít nghe thấy”, hãy kiểm chứng, vì nhân viên đôi khi không than với CEO."]},
+A3:{n:"Công việc ý nghĩa",
+ why:"Khi nhân viên thấy rõ công việc của mình làm đời sống khách hàng tốt hơn, họ có động lực vượt xa lương thưởng. Đây là nơi sứ mệnh trở thành hiện thực.",
+ q:"Nếu hỏi ngẫu nhiên 5 nhân viên ở cấp thấp nhất trong công ty “Công việc của bạn làm cuộc sống khách hàng tốt hơn thế nào?”, bao nhiêu người kể được một ví dụ cụ thể?",
+ o:["0–1 người","2 người","3–4 người","Cả 5 người"],
+ i:["Rất ít nhân viên kể được tác động cụ thể. Sứ mệnh, nếu có, đang dừng ở lời nói của lãnh đạo.",
+    "Một số nhân viên thấy được ý nghĩa công việc, nhưng phần lớn coi đây là “một công việc”.",
+    "Đa số nhân viên kết nối được việc mình làm với khách hàng. Nền tảng tốt để gắn sứ mệnh vào vận hành hằng ngày.",
+    "Mọi nhân viên đều kể được câu chuyện thật. Sứ mệnh đang sống trong đội ngũ."]},
+A4:{n:"Công việc cuốn hút",
+ why:"Sáng kiến tự phát là dấu hiệu rõ nhất của sự gắn kết. Người gắn kết làm nhiều hơn mức được giao vì họ quan tâm.",
+ q:"Trong quý vừa qua, có bao nhiêu cải tiến do nhân viên tự đề xuất và tự triển khai mà không ai giao?",
+ o:["Không có","1–2","3–5","Nhiều hơn 5, và đã thành thói quen"],
+ i:["Chưa có sáng kiến tự phát nào. Nhân viên đang làm đúng việc được giao, chưa thấy mình là “người chủ” của công việc.",
+    "Có lẻ tẻ sáng kiến, thường từ vài cá nhân nổi bật.",
+    "Sáng kiến xuất hiện đều đặn. Đội ngũ có năng lượng và cảm thấy được phép thử.",
+    "Cải tiến tự phát đã thành thói quen. Đây là đội ngũ gắn kết cao."]},
+A5:{n:"Thể hiện bản thân",
+ why:"Khi nhân viên dám nói “tôi chưa biết” và xin trợ giúp, vấn đề lộ ra sớm và mọi người học nhanh hơn. Khi họ không dám, lỗi bị giấu đến khi quá muộn.",
+ q:"Trong tháng qua, anh/chị chứng kiến bao nhiêu lần một nhân viên công khai nói “tôi chưa biết”, hỏi lại điều mà mọi người nghĩ là họ đã phải biết, hoặc xin trợ giúp?",
+ o:["Không lần nào","1–2 lần, chủ yếu từ vài người thân với lãnh đạo","Nhiều lần, ở phần lớn các nhóm","Thường xuyên, kể cả quản lý và người mới"],
+ i:["Nhân viên gần như không thể hiện điểm yếu. Họ có thể đang sợ bị đánh giá là kém cỏi.",
+    "Chỉ một vài người thấy đủ an toàn để hỏi, thường là người thân với lãnh đạo. Phần còn lại im lặng.",
+    "Phần lớn các nhóm thoải mái hỏi và xin trợ giúp. Môi trường học hỏi đang hình thành.",
+    "Cả quản lý và người mới đều dám nói “tôi chưa biết”. Đây là dấu hiệu của an toàn tâm lý cao."]},
+A6:{n:"Quyền chủ động",
+ why:"Cảm giác được làm chủ công việc là một trong những nguồn động lực lớn nhất tại nơi làm việc, và giúp khách hàng được phục vụ nhanh hơn.",
+ q:"Khi xử lý một vấn đề với khách hàng, nhân viên tuyến đầu được tự quyết đến đâu?",
+ o:["Mọi trường hợp đều phải xin phép","Chỉ việc rất nhỏ đã có quy định sẵn","Có hạn mức rõ và được tự quyết trong hạn mức","Được tin tưởng tự quyết rồi báo lại sau"],
+ i:["Mọi quyết định đều phải xin phép. Nhân viên chờ, khách hàng chờ, và CEO bị kéo vào việc nhỏ.",
+    "Nhân viên chỉ tự quyết trong phạm vi quy định sẵn. Gặp tình huống mới, họ lại phải hỏi.",
+    "Có hạn mức tự quyết rõ ràng. Đây là bước quan trọng từ kiểm soát sang tin tưởng.",
+    "Nhân viên được tin tưởng tự quyết, quản lý cho bối cảnh thay vì đáp án. Đây là mức trao quyền cao."]},
+A7:{n:"Quan hệ công việc",
+ why:"Cách các bộ phận phối hợp khi có vấn đề cho thấy chất lượng quan hệ thật trong tổ chức, rõ hơn mọi buổi team building.",
+ q:"Khi một việc cần nhiều bộ phận phối hợp bị chậm, điều gì thường xảy ra?",
+ o:["Các bên đổ lỗi cho nhau, CEO phân xử","Phải có cuộc họp của quản lý mới gỡ được","Người phụ trách các bên tự gọi nhau xử lý","Nhân viên chủ động hỗ trợ nhau, kể cả ngoài phạm vi"],
+ i:["Các bộ phận đổ lỗi cho nhau và CEO phải phân xử. Tổ chức đang vận hành theo kiểu “ốc đảo”.",
+    "Phối hợp được, nhưng phải qua cấp quản lý. Tốc độ bị chậm lại ở mỗi lần chuyển tầng.",
+    "Người phụ trách các bên tự kết nối với nhau. Quan hệ ngang đã có nền tảng tin cậy.",
+    "Nhân viên chủ động hỗ trợ cả việc ngoài phạm vi. Đây là tinh thần “một đội” thực sự."]},
+A8:{n:"Cảm giác tiến bộ",
+ why:"Người giỏi ở lại khi họ thấy mình lớn lên. Số phận của những người giỏi nhất là thước đo trung thực nhất về cơ hội phát triển.",
+ q:"Nghĩ về 3 nhân viên giỏi nhất của công ty 2 năm trước. Hôm nay họ đang ở đâu?",
+ o:["Đã nghỉ cả","Còn, vẫn vị trí và phạm vi cũ","Còn, phạm vi công việc lớn hơn rõ rệt","Còn, đã được đề bạt hoặc đang dẫn dắt người khác"],
+ i:["Cả ba người giỏi nhất đã rời đi. Đây là tín hiệu cần nhìn kỹ: họ đi tìm điều gì mà ở đây không có?",
+    "Họ còn ở lại nhưng vẫn ở vị trí cũ. Rủi ro là họ sẽ rời đi khi có cơ hội tốt hơn bên ngoài.",
+    "Phạm vi công việc của họ đã lớn hơn. Công ty đang tạo được đường phát triển.",
+    "Họ đã được đề bạt hoặc đang dẫn dắt người khác. Công ty đang “nuôi” được thế hệ quản lý kế tiếp."]},
+A9:{n:"Thiết kế công việc",
+ why:"Khi khối lượng công việc vượt quá thời gian làm việc, mọi nỗ lực khác về động lực đều bị bào mòn. Đây cũng là điểm thấp nhất trong khảo sát nhân viên của nhiều doanh nghiệp.",
+ q:"Trong tháng qua, tính cả nhân viên cấp thấp nhất và những bộ phận anh/chị ít tiếp xúc, bao nhiêu % nhân viên thường xuyên phải làm ngoài giờ hoặc cuối tuần để kịp việc?",
+ o:["Trên 50%","25–50%","10–25%","Dưới 10%"],
+ i:["Quá nửa đội ngũ thường xuyên làm ngoài giờ. Đây là tình trạng không bền vững và là nguy cơ kiệt sức.",
+    "Một phần tư đến một nửa đội ngũ làm ngoài giờ thường xuyên. Cần xem việc nào có thể bỏ, gộp hoặc tự động hoá.",
+    "Làm ngoài giờ chỉ xảy ra ở một nhóm nhỏ. Nên kiểm tra xem đó có phải luôn là cùng một nhóm người không.",
+    "Khối lượng công việc phù hợp với thời gian làm việc. Đây là nền tảng tốt cho sự bền vững."]},
+A10:{n:"Hệ thống quản lý",
+ why:"Mục tiêu rõ ở cấp lãnh đạo chưa chắc đã rõ ở cấp thấp nhất. Khi người trực tiếp làm việc hiểu mục tiêu, cách đo và lý do, họ tự điều chỉnh mà không cần chờ chỉ đạo.",
+ q:"Nếu hỏi ngẫu nhiên một nhân viên ở cấp thấp nhất trong công ty (không quản lý ai, cách anh/chị ít nhất hai cấp): “Mục tiêu tháng này của bạn là gì, đo bằng gì, và vì sao nó quan trọng với công ty?”, họ trả lời được đến đâu?",
+ o:["Chỉ kể đầu việc, không nêu được mục tiêu","Nêu được mục tiêu, không rõ đo bằng gì","Nêu được mục tiêu và chỉ số, chưa rõ vì sao","Nêu được mục tiêu, chỉ số, lý do và tiến độ"],
+ i:["Nhân viên cấp thấp nhất chỉ biết đầu việc, không biết mục tiêu. Mục tiêu có thể rõ ở cấp lãnh đạo, nhưng chưa xuống tới người trực tiếp làm việc.",
+    "Mục tiêu đã xuống tới cấp thấp nhất, nhưng thiếu thước đo. Nhân viên khó tự biết mình đang làm tốt hay chưa.",
+    "Mục tiêu và chỉ số đã rõ ở cấp thấp nhất. Phần còn thiếu là “vì sao”: nhân viên chưa thấy việc của mình nối với mục tiêu công ty.",
+    "Nhân viên cấp thấp nhất hiểu mục tiêu, cách đo, lý do và tiến độ của mình. Đây là hệ thống quản lý trưởng thành, nhất quán từ trên xuống dưới."]},
+A11:{n:"Giá trị xã hội",
+ why:"Nghe trực tiếp tác động lên khách hàng là cách nhanh nhất biến sứ mệnh thành động lực hằng ngày.",
+ q:"Nhân viên được nghe trực tiếp tác động công việc của mình lên khách hàng bao lâu một lần?",
+ o:["Gần như không","Chủ yếu khi có khiếu nại","Định kỳ, cả khen lẫn chê","Hằng tuần, có nghi thức gắn với sứ mệnh"],
+ i:["Phản hồi khách hàng dừng ở bộ phận CSKH hoặc quản lý. Phần lớn nhân viên không biết công việc của mình tạo ra khác biệt gì.",
+    "Nhân viên chủ yếu nghe về khách hàng khi có khiếu nại. Họ dễ liên tưởng khách hàng với rắc rối hơn là với ý nghĩa.",
+    "Phản hồi khách hàng được chia sẻ định kỳ, cả khen lẫn chê. Đội ngũ đã có kết nối với tác động của mình.",
+    "Câu chuyện khách hàng được kể hằng tuần và gắn với sứ mệnh. Đây là cách sứ mệnh được “nuôi” mỗi ngày."]},
+A12:{n:"Môi trường làm việc (tính cởi mở)",
+ why:"Sự cởi mở ở cấp CEO chưa chắc đã truyền xuống dưới. Cách nhân viên cấp dưới phản ứng khi không đồng ý với quản lý trực tiếp cho thấy văn hoá thật của tổ chức.",
+ q:"Khi nhân viên cấp dưới không đồng ý với quyết định của quản lý trực tiếp của họ, điều gì thường xảy ra?",
+ o:["Vẫn làm theo, bỏ qua ý kiến cá nhân","Phàn nàn sau lưng, không nói thẳng","Nói thẳng và được lắng nghe","Nói thẳng, quản lý đã điều chỉnh quyết định"],
+ i:["Nhân viên làm theo và giữ ý kiến cho riêng mình. Tổ chức đang mất những thông tin quan trọng từ những người gần khách hàng và công việc nhất.",
+    "Bất đồng có, nhưng không được nói ra đúng chỗ. Đây thường là dấu hiệu quản lý cấp trung chưa tạo được sự an toàn để phản biện.",
+    "Nhân viên dám nói thẳng với quản lý và được lắng nghe. Sự cởi mở đã truyền xuống dưới cấp lãnh đạo cao nhất.",
+    "Ý kiến của nhân viên cấp dưới đã làm thay đổi quyết định của quản lý. Đây là bằng chứng mạnh nhất rằng văn hoá cởi mở đã thấm xuống toàn tổ chức."]},
+A13:{n:"Sức sống",
+ why:"Con người chỉ làm việc tốt nhất khi họ khoẻ và đủ năng lượng. Kiệt sức thường đến trước nghỉ việc vài tháng.",
+ q:"Trong 3 tháng qua, bao nhiêu % nhân viên nghỉ ốm nhiều lần hoặc có dấu hiệu kiệt sức?",
+ o:["Trên 20%","10–20%","Dưới 10%","Gần như không có, và có hoạt động chăm sóc sức khoẻ"],
+ i:["Hơn 1/5 đội ngũ có dấu hiệu kiệt sức. Đây là tín hiệu đỏ cần xử lý trước mọi sáng kiến khác.",
+    "Kiệt sức đang xuất hiện ở một phần đáng kể đội ngũ. Nên đối chiếu với câu về khối lượng công việc.",
+    "Kiệt sức chỉ ở mức lẻ tẻ. Đội ngũ nhìn chung đủ năng lượng.",
+    "Đội ngũ khoẻ và công ty chủ động chăm sóc sức khoẻ. Đây là nguồn lực quý cho giai đoạn tăng trưởng."]},
+A14:{n:"Hạnh phúc cá nhân (sự hỗ trợ)",
+ why:"Những mối quan hệ hỗ trợ là yếu tố quan trọng hàng đầu của hạnh phúc cá nhân. Khi nhân viên biết sẽ có người đỡ mình lúc khó, họ dám nhận việc khó.",
+ q:"Khi một nhân viên bị kẹt việc, quá tải, chưa biết cách làm hoặc đang có chuyện không ổn, điều gì thường xảy ra?",
+ o:["Họ tự xoay xở","Phải báo lên quản lý mới có người hỗ trợ","Đồng nghiệp, quản lý giúp khi được nhờ","Mọi người tự nhận ra và vào hỗ trợ"],
+ i:["Nhân viên phải tự xoay xở. Vấn đề chỉ lộ ra khi đã quá hạn, và người gặp khó cảm thấy đơn độc.",
+    "Hỗ trợ có, nhưng phải qua quản lý. Sự giúp đỡ mang tính thủ tục hơn là tự nhiên.",
+    "Đồng nghiệp và quản lý sẵn sàng giúp khi được nhờ. Nền tảng tin cậy đã có.",
+    "Mọi người tự nhận ra và vào hỗ trợ, cả trong lẫn ngoài công việc. Đây là một cộng đồng thực sự."]},
+A15:{n:"Cân bằng công việc – cuộc sống",
+ why:"Khi công việc tràn vào mọi giờ trong ngày, nhân viên không có thời gian hồi phục. Thói quen nhắn tin ngoài giờ thường bắt đầu từ chính lãnh đạo.",
+ q:"Ngoài giờ làm, tin nhắn công việc (Zalo, nhóm chat) diễn ra thế nào?",
+ o:["Thường xuyên, được kỳ vọng trả lời ngay","Thường xuyên, không bắt buộc trả lời","Chỉ khi thật sự khẩn cấp","Có quy ước rõ, lãnh đạo làm gương"],
+ i:["Nhân viên được kỳ vọng trả lời cả đêm và cuối tuần. Đây là nguồn căng thẳng lớn, kể cả khi không ai nói ra.",
+    "Tin nhắn ngoài giờ thường xuyên, dù không bắt buộc trả lời. Trên thực tế, nhiều người vẫn thấy áp lực phải trả lời.",
+    "Chỉ liên lạc ngoài giờ khi khẩn cấp. Ranh giới đã được tôn trọng.",
+    "Có quy ước rõ ràng và lãnh đạo làm gương. Đây là mức chủ động bảo vệ thời gian của nhân viên."]},
+A16:{n:"Sự tự tin, bền bỉ",
+ why:"Cách đội ngũ phản ứng với sự cố cho thấy họ tự tin đến đâu, và tổ chức phụ thuộc vào CEO đến mức nào.",
+ q:"Khi có sự cố lớn gần nhất, đội ngũ phản ứng thế nào?",
+ o:["Hoảng, chờ CEO xử lý","Xử lý được nhưng phụ thuộc CEO","Tự xử lý và nhanh chóng ổn định","Tự xử lý, tự rút kinh nghiệm và sửa quy trình"],
+ i:["Đội ngũ hoảng và chờ CEO. Tổ chức đang dựa gần như hoàn toàn vào một người.",
+    "Đội ngũ xử lý được nhưng cần CEO dẫn dắt. Khả năng tự đứng vững còn hạn chế.",
+    "Đội ngũ tự xử lý và nhanh chóng ổn định lại. Đây là một đội ngũ bền bỉ.",
+    "Đội ngũ tự xử lý, tự rút kinh nghiệm và sửa quy trình. Đây là tổ chức biết tự học."]},
+B1:{n:"Hành động khi chưa có quy định",
+ why:"Không bộ quy định nào phủ hết mọi tình huống. Điều nhân viên làm ở “vùng trống” cho thấy tổ chức thật sự đang được dẫn dắt bằng gì.",
+ q:"Khi gặp tình huống chưa có quy định, nhân viên thường làm gì?",
+ o:["Dừng lại chờ hỏi","Hỏi quản lý rồi làm theo","Tự quyết theo kinh nghiệm, thói quen chung","Tự quyết dựa trên giá trị, giải thích được lý do"],
+ i:["Nhân viên dừng lại chờ hỏi. Tổ chức chỉ chạy nhanh bằng tốc độ trả lời của CEO và quản lý.",
+    "Nhân viên hỏi quản lý rồi làm theo. Quyết định vẫn tập trung ở cấp trên.",
+    "Nhân viên tự quyết theo kinh nghiệm hoặc thói quen chung. Văn hoá đang dẫn dắt, nhưng là văn hoá tự phát, chưa chắc đi đúng hướng anh/chị muốn.",
+    "Nhân viên tự quyết dựa trên giá trị và giải thích được lý do. Đây là quản trị bằng văn hoá có chủ đích."]},
+B2:{n:"Thời gian của CEO",
+ why:"Thời gian CEO dành cho phê duyệt và vận hành là thời gian không dành cho chiến lược, con người và văn hoá.",
+ q:"Bao nhiêu % thời gian của anh/chị dành cho phê duyệt, kiểm tra và xử lý vận hành hằng ngày?",
+ o:["Trên 60%","40–60%","20–40%","Dưới 20%"],
+ i:["Hơn 60% thời gian dành cho vận hành. CEO đang là “người vận hành trưởng” của công ty.",
+    "Gần một nửa thời gian dành cho vận hành. Còn ít chỗ cho việc xây dựng tổ chức.",
+    "Phần lớn thời gian đã dành cho việc ở tầm CEO. Hệ thống đang gánh được vận hành hằng ngày.",
+    "Dưới 20% thời gian dành cho vận hành. CEO đang làm đúng vai trò dẫn dắt."]},
+B3:{n:"Hai tuần vắng CEO",
+ why:"Đây là bài kiểm tra đơn giản nhất xem tổ chức chạy bằng con người CEO hay bằng hệ thống và văn hoá.",
+ q:"Nếu anh/chị vắng mặt hoàn toàn 2 tuần, điều gì xảy ra?",
+ o:["Nhiều việc dừng lại","Vẫn chạy nhưng nhiều quyết định chờ","Chạy bình thường, chỉ vài quyết định lớn chờ","Đội ngũ ra cả quyết định quan trọng đúng như CEO"],
+ i:["Nhiều việc sẽ dừng lại. Công ty đang phụ thuộc gần như hoàn toàn vào CEO.",
+    "Công ty vẫn chạy nhưng quyết định bị dồn lại. CEO là điểm nghẽn.",
+    "Công ty chạy bình thường, chỉ việc lớn chờ CEO. Mức độc lập đã tốt.",
+    "Đội ngũ ra cả quyết định quan trọng đúng như CEO sẽ làm. Đây là dấu hiệu văn hoá đã thấm vào cách ra quyết định."]},
+B4:{n:"Công cụ định hướng hành vi",
+ why:"Thứ mà tổ chức dùng để định hướng hành vi cho biết nó đang quản trị bằng kiểm soát hay bằng niềm tin.",
+ q:"Công cụ chính để định hướng hành vi nhân viên hiện nay là gì?",
+ o:["Nội quy, KPI và thưởng phạt","Quy trình và giám sát của quản lý","Tấm gương lãnh đạo và “không khí chung”","Giá trị cốt lõi thành hành vi và ngôn ngữ hằng ngày"],
+ i:["Nội quy, KPI và thưởng phạt là công cụ chính. Đây là quản trị bằng kiểm soát: hiệu quả khi tổ chức nhỏ, khó mở rộng khi lớn lên.",
+    "Quy trình và giám sát của quản lý là công cụ chính. Chất lượng phụ thuộc vào việc quản lý có mặt hay không.",
+    "Tấm gương lãnh đạo và không khí chung là công cụ chính. Văn hoá đã có sức nặng, nhưng còn ngầm định và khó truyền cho người mới.",
+    "Giá trị cốt lõi đã thành hành vi và ngôn ngữ hằng ngày. Đây là quản trị bằng văn hoá."]},
+B5:{n:"Giá trị cốt lõi được định nghĩa",
+ why:"Văn hoá luôn tồn tại, dù có được thiết kế hay không. Viết ra và định nghĩa giá trị là bước đầu tiên để văn hoá trở thành có chủ đích.",
+ q:"Công ty đã có giá trị cốt lõi chưa?",
+ o:["Chưa có","Có trong đầu CEO, chưa viết ra","Đã viết ra tên các giá trị","Đã viết ra, có định nghĩa và hành vi cụ thể"],
+ i:["Chưa có giá trị cốt lõi. Văn hoá đang tự hình thành theo thói quen và tính cách của những người đầu tiên.",
+    "Giá trị nằm trong đầu CEO. Đội ngũ phải đoán, và mỗi người đoán một kiểu.",
+    "Giá trị đã được viết ra nhưng chưa định nghĩa. Mỗi người có thể hiểu cùng một từ theo cách khác nhau.",
+    "Mỗi giá trị đã có định nghĩa và hành vi cụ thể. Đây là nền móng đủ vững để vận hành văn hoá."]},
+B6:{n:"Giá trị được sống trong tuần qua",
+ why:"Giá trị chỉ có ý nghĩa khi nó hiện diện trong hành vi tuần này, không phải trên tường.",
+ q:"Hỏi ngẫu nhiên 5 nhân viên, bao nhiêu người nêu đúng giá trị và kể được một lần đã làm theo giá trị đó trong tuần qua?",
+ o:["0–1 người","2 người","3–4 người","Cả 5 người"],
+ i:["Rất ít nhân viên kể được giá trị và ví dụ gần đây. Giá trị đang ở trên giấy.",
+    "Một số nhân viên sống theo giá trị. Đây thường là những người gần lãnh đạo.",
+    "Đa số nhân viên sống theo giá trị và kể được ví dụ. Văn hoá đang được sống có chủ đích.",
+    "Mọi người đều kể được ví dụ trong tuần qua. Giá trị là một phần công việc hằng ngày."]},
+B7:{n:"Giữ nhau chịu trách nhiệm",
+ why:"Văn hoá mạnh không cần CEO làm “cảnh sát”. Khi nhân viên nhắc nhau, văn hoá tự duy trì.",
+ q:"Lần gần nhất một nhân viên nhắc đồng nghiệp vì làm trái giá trị là khi nào?",
+ o:["Không nhớ có lần nào","Chỉ có quản lý nhắc cấp dưới","Nhân viên nhắc nhau trong 6 tháng qua","Thường xuyên, kể cả nhắc ngược lên lãnh đạo"],
+ i:["Chưa có ai nhắc ai về giá trị. Vi phạm giá trị đang trôi qua mà không có hệ quả.",
+    "Chỉ quản lý nhắc cấp dưới. Văn hoá vẫn là việc của cấp trên.",
+    "Nhân viên đã nhắc nhau. Trách nhiệm với văn hoá đang lan ra toàn đội.",
+    "Nhắc nhau thường xuyên, kể cả nhắc ngược lên lãnh đạo. Đây là dấu hiệu của văn hoá trưởng thành."]},
+B8:{n:"Giá trị trong quy trình",
+ why:"Văn hoá chỉ bền khi nó nằm trong những quy trình quyết định ai vào, ai lên và ai ra.",
+ q:"Giá trị cốt lõi đang nằm trong những quy trình nào?",
+ o:["0 quy trình","1–2 quy trình","3–4 quy trình","5–6 quy trình"],
+ i:["Giá trị chưa gắn với bất kỳ quyết định nhân sự nào. Hành vi thực tế sẽ đi theo những gì được thưởng, không theo những gì được nói.",
+    "Giá trị bắt đầu có chỗ đứng, thường là ở tuyển dụng hoặc khen thưởng.",
+    "Giá trị đã đi vào phần lớn vòng đời nhân viên.",
+    "Giá trị được hệ thống hoá trọn vẹn, từ tuyển dụng đến cho thôi việc."]},
+B9:{n:"Bảo vệ giá trị",
+ why:"Cách công ty xử lý một người giỏi chuyên môn nhưng trái giá trị là thông điệp mạnh nhất gửi tới cả đội về điều gì thật sự quan trọng.",
+ q:"Công ty xử lý thế nào với một người giỏi chuyên môn nhưng liên tục làm trái giá trị?",
+ o:["Vẫn giữ, vì người giỏi khó tìm","Biết rõ nhưng chưa xử lý","Đã xử lý, nhưng sau thời gian dài","Xử lý dứt khoát, cả đội hiểu lý do"],
+ i:["Người giỏi được giữ bất kể hành vi. Đội ngũ hiểu rằng kết quả quan trọng hơn giá trị.",
+    "Vấn đề được biết nhưng chưa xử lý. Mỗi ngày trì hoãn làm giảm niềm tin của những người đang sống đúng giá trị.",
+    "Đã xử lý nhưng chậm. Thông điệp đã được gửi đi, dù muộn.",
+    "Xử lý dứt khoát và cả đội hiểu lý do. Giá trị được bảo vệ bằng hành động."]},
+B10:{n:"Ra quyết định",
+ why:"Ai quyết và dựa trên gì cho thấy quyền lực được phân bổ thế nào trong tổ chức.",
+ q:"Quyết định quan trọng gần nhất không do anh/chị trực tiếp đưa ra được hình thành thế nào?",
+ o:["Thực tế mọi quyết định quan trọng đều do CEO","Quản lý đề xuất, CEO duyệt","Người phụ trách quyết sau khi tham khảo","Người trực tiếp liên quan quyết, dựa trên giá trị và sứ mệnh"],
+ i:["Mọi quyết định quan trọng đều do CEO. Tổ chức chỉ lớn được bằng sức của một người.",
+    "Quản lý đề xuất, CEO duyệt. Quản lý chưa thực sự sở hữu quyết định.",
+    "Người phụ trách quyết sau khi tham khảo. Quyền ra quyết định đã được trao.",
+    "Người trực tiếp liên quan tự quyết dựa trên giá trị và sứ mệnh. Đây là ra quyết định bằng văn hoá."]},
+B11:{n:"Phản hồi lên trên",
+ why:"CEO thường là người nhận ít phản hồi thẳng thắn nhất trong công ty, dù quyết định của CEO ảnh hưởng nhiều nhất.",
+ q:"Lần gần nhất anh/chị nhận góp ý thẳng thắn về cách lãnh đạo của mình từ một nhân viên là khi nào?",
+ o:["Không nhớ có lần nào","Hơn 6 tháng trước","Trong 6 tháng qua","Thường xuyên, có kênh định kỳ"],
+ i:["Chưa nhận được phản hồi nào. Có thể nhân viên chưa thấy an toàn để góp ý lên trên.",
+    "Phản hồi hiếm và đã lâu. Kênh phản hồi lên trên chưa được nuôi dưỡng.",
+    "Có phản hồi trong 6 tháng qua. Đây là dấu hiệu tốt về sự cởi mở.",
+    "Phản hồi thường xuyên vì CEO chủ động hỏi. CEO đang làm gương cho văn hoá phản hồi."]},
+B12:{n:"An toàn tâm lý",
+ why:"Cách tổ chức đối xử với lỗi quyết định việc lỗi được báo sớm hay bị giấu đến khi thành khủng hoảng.",
+ q:"Khi một nhân viên mắc lỗi gây thiệt hại, điều gì thường xảy ra?",
+ o:["Bị phạt, lần sau người ta giấu lỗi","Bị nhắc nhở, rút kinh nghiệm riêng","Cả nhóm phân tích nguyên nhân, không quy lỗi","Người mắc lỗi tự chia sẻ công khai và được ghi nhận"],
+ i:["Lỗi bị phạt nên lỗi bị giấu. Tổ chức đang mất cơ hội học và dễ bị bất ngờ.",
+    "Lỗi được xử lý riêng. Người mắc lỗi học được, nhưng cả đội thì không.",
+    "Lỗi được phân tích theo hệ thống, không quy lỗi cá nhân. An toàn tâm lý đã có nền tảng.",
+    "Người mắc lỗi tự chia sẻ và được ghi nhận. Đây là văn hoá học hỏi mạnh."]},
+B13:{n:"Nghi thức",
+ why:"Nghi thức là những hoạt động lặp đi lặp lại thể hiện văn hoá cốt lõi và gắn kết các thành viên, như ăn mừng chiến thắng, cùng nhìn lại thất bại, hay vinh danh người sống đúng giá trị. Đây là cách văn hoá được nhắc lại và cảm nhận, không chỉ được nói ra.",
+ q:"Công ty có những nghi thức nào? (Hoạt động lặp lại thể hiện văn hoá cốt lõi và gắn kết thành viên, ví dụ: ăn mừng chiến thắng, vinh danh người sống đúng giá trị.)",
+ o:["Chủ yếu tiệc cuối năm, sinh nhật","Có vài hoạt động, không gắn với giá trị","Nghi thức định kỳ gắn với giá trị","Nhiều nghi thức gắn giá trị, do nhân viên duy trì"],
+ i:["Hoạt động chung chủ yếu là tiệc và sinh nhật. Chúng tạo gắn kết, nhưng chưa củng cố giá trị nào.",
+    "Có hoạt động nhưng chưa gắn với giá trị. Đây là cơ hội dễ cải thiện nhất.",
+    "Có nghi thức định kỳ gắn với giá trị. Văn hoá đang được nuôi dưỡng đều đặn.",
+    "Nhân viên tự duy trì các nghi thức. Văn hoá đã thuộc về đội ngũ."]},
+B14:{n:"Hành vi được thưởng",
+ why:"Nhân viên nhìn vào ai được thưởng để biết điều gì thật sự quan trọng, bất kể giá trị viết gì.",
+ q:"Người được ghi nhận, khen thưởng lớn nhất năm qua được ghi nhận vì điều gì?",
+ o:["Chỉ vì kết quả kinh doanh","Kết quả cộng sự chăm chỉ, thâm niên","Kết quả, nhưng phải đạt đúng cách theo giá trị","Sống đúng giá trị được thưởng riêng, ngang kết quả"],
+ i:["Chỉ kết quả được thưởng. Đội ngũ học rằng “đạt số bằng mọi cách” là được chấp nhận.",
+    "Kết quả và sự chăm chỉ được thưởng. Nỗ lực được ghi nhận, nhưng cách làm thì chưa.",
+    "Kết quả chỉ được thưởng khi đạt bằng cách làm đúng giá trị. Giá trị đã trở thành điều kiện, nhưng vẫn đứng sau kết quả.",
+    "Sống đúng giá trị được ghi nhận riêng, ngang hàng với kết quả, có tiêu chí rõ. Đây là mức nhất quán cao nhất: giá trị là một thước đo thành công, không chỉ là điều kiện."]}
+};
+
+const AREAS = [
+ {k:"exp",n:"Cảm nhận về công việc",items:["A1","A2","A3","A4"],
+  intro:"Cảm nhận về công việc là cách đội ngũ cảm thấy trong từng ngày làm việc. Phần này xem xét những căng thẳng và bực bội trong công việc, mức độ hứng thú và gắn kết, và mức độ họ thấy công việc của mình có ý nghĩa."},
+ {k:"fun",n:"Phát huy năng lực cá nhân",items:["A5","A6","A7","A8"],
+  intro:"Phát huy năng lực cá nhân là mức độ đội ngũ được phát huy hết khả năng trong công việc hằng ngày: họ có được là chính mình, có quyền chủ động, có được đồng nghiệp hỗ trợ và có thấy mình tiến bộ hay không."},
+ {k:"org",n:"Hệ thống tổ chức",items:["A9","A10","A11","A12"],
+  intro:"Hệ thống tổ chức là nơi đội ngũ làm việc: cách tổ chức được quản lý, cách công việc được thiết kế, giá trị xã hội mà công việc tạo ra, và mức độ cởi mở của môi trường làm việc. Đây là vùng CEO kiểm soát trực tiếp nhất."},
+ {k:"per",n:"Nguồn lực cá nhân",items:["A13","A14","A15","A16"],
+  intro:"Nguồn lực cá nhân là cuộc sống tổng thể của đội ngũ, bao gồm cân bằng công việc – cuộc sống: họ khoẻ mạnh, được hỗ trợ và bền bỉ đến đâu, cùng sự tự tin và năng lượng họ mang đến nơi làm việc."}
+];
+const CULT = [
+ {k:"lead",n:"Lãnh đạo bằng văn hoá",items:["B1","B2","B3","B4"],
+  intro:"Phần này nhìn vào cách tổ chức đang thực sự được dẫn dắt hằng ngày: bằng quy định, phê duyệt và sự có mặt của CEO, hay bằng những gì tổ chức cùng tin tưởng. Đây là tầng nguồn: hành vi của lãnh đạo quyết định giá trị là thật hay chỉ là khẩu hiệu."},
+ {k:"int",n:"Mức độ chủ đích",items:["B5","B6","B7","B8","B9"],
+  intro:"Văn hoá luôn tồn tại, dù được thiết kế hay không. Phần này đo mức văn hoá được làm rõ và sống có chủ đích: có giá trị cốt lõi, định nghĩa chúng, sống theo chúng, giữ nhau chịu trách nhiệm và đưa chúng vào quy trình."},
+ {k:"sys",n:"Hệ thống văn hoá",items:["B10","B11","B12","B13","B14"],
+  intro:"Hệ thống văn hoá là những cơ chế hằng ngày biến giá trị thành thói quen: cách ra quyết định, cách phản hồi, cách đối xử với lỗi, các nghi thức, và hành vi nào được thưởng. Năm thành phần này lấy từ Culture Design Canvas."}
+];
+const LEVELS = [
+ ["Mệnh lệnh – kiểm soát","Chưa có giá trị chung được nói ra; hành vi được định hướng chủ yếu bằng quy định và chỉ đạo."],
+ ["Văn hoá tự phát","Công ty đã có “cách làm riêng”, nhưng nó hình thành tự nhiên theo thói quen và tính cách, chưa được thiết kế. Văn hoá tự phát có thể tốt, nhưng khó giữ khi công ty lớn lên hoặc người cũ rời đi."],
+ ["Có giá trị, chưa định nghĩa","Giá trị đã được đặt tên, nhưng mỗi người hiểu một kiểu. Bước tiếp theo là biến mỗi giá trị thành hành vi quan sát được."],
+ ["Giá trị đã được định nghĩa","Nền móng đã đủ rõ. Thử thách bây giờ là đưa giá trị từ tài liệu vào công việc hằng ngày."],
+ ["Văn hoá được sống có chủ đích","Đa số nhân viên sống theo giá trị và kể được ví dụ. Để bền vững, giá trị cần đi vào quy trình nhân sự và cơ chế giữ nhau chịu trách nhiệm."],
+ ["Hệ thống hoá và giữ nhau chịu trách nhiệm","Văn hoá đã tự duy trì: được đưa vào quy trình, được bảo vệ bằng hành động, và nhân viên giữ nhau chịu trách nhiệm."]
+];
+
+/* ===================== CHẤM ĐIỂM ===================== */
+const PTS = {a:0,b:10/3,c:20/3,d:10};
+function itemScore(code, a){
+  const v = a[code];
+  if (code==="B8"){ if(v==="e"||!Array.isArray(v)) return null; const n=(v||[]).filter(x=>x!=="Chưa có quy trình nào").length; return n===0?0:n<=2?10/3:n<=4?20/3:10; }
+  if (v==="e"||v==="f"||v==null) return null;
+  return PTS[v];
+}
+function optIndex(code,a){ const v=a[code];
+  if(code==="B8"){ if(!Array.isArray(v)) return -1; const n=(v||[]).filter(x=>x!=="Chưa có quy trình nào").length; return n===0?0:n<=2?1:n<=4?2:3;}
+  return "abcd".indexOf(v); }
+const mean = arr => { const x=arr.filter(v=>v!=null); return x.length? x.reduce((s,v)=>s+v,0)/x.length : null; };
+const f1 = v => v==null? "–" : (Math.round(v*10)/10).toFixed(1);
+const band = v => v==null?"none": v>=7?"good": v>=5?"mid": v>=2.5?"weak":"bad";
+const bandName = {good:"Tốt",mid:"Khá",weak:"Trung bình",bad:"Yếu",none:"Chưa có dữ liệu"};
+const badge = (v,cls="") => `<span class="badge ${cls} c-${band(v)}" aria-label="Điểm ${f1(v)}">${f1(v)}</span>`;
+
+function compute(d){
+  const a=d.ans, s={};
+  Object.keys(Q).forEach(k=>s[k]=itemScore(k,a));
+  const area={}; AREAS.forEach(x=>area[x.k]=mean(x.items.map(i=>s[i])));
+  const cult={}; CULT.forEach(x=>cult[x.k]=mean(x.items.map(i=>s[i])));
+  const overall = mean(AREAS.map(x=>area[x.k]));
+  const gov = cult.lead;
+  const govName = gov==null?"Chưa đủ dữ liệu": gov<4?"Mệnh lệnh – kiểm soát": gov<=6.5?"Hỗn hợp: đang chuyển dịch":"Quản trị bằng văn hoá";
+  const B5=a.B5, B6=s.B6, B7=s.B7, nProc=(Array.isArray(a.B8)?a.B8:[]).filter(x=>x!=="Chưa có quy trình nào").length;
+  let level;
+  if (B5==="d" && B6>=20/3-.01 && B7>=20/3-.01 && nProc>=3 && (a.B9==="d"||a.B9==="f")) level=5;
+  else if (B5==="d" && B6>=20/3-.01) level=4;
+  else if (B5==="d") level=3;
+  else if (B5==="c") level=2;
+  else level = (gov!=null && gov>=4)?1:0;
+  const turnover = (d.staff && d.left12m!=null)? d.left12m/d.staff*100 : null;
+  const early = (d.left12m && d.leftEarly!=null)? d.leftEarly/d.left12m*100 : null;
+  const blind = Object.keys(Q).filter(k=>a[k]==="e");
+  const flags=[];
+  if (level>=2 && gov<4) flags.push(["Văn hoá trên giấy","Công ty đã có giá trị cốt lõi, nhưng tổ chức vẫn vận hành bằng mệnh lệnh và kiểm soát. Giá trị chưa được dùng để ra quyết định."]);
+  if (["a","b"].includes(a.B3) && ["a","b"].includes(a.B10)) flags.push(["CEO là nút thắt cổ chai","Phần lớn quyết định quan trọng đi qua anh/chị. Tổ chức chỉ tăng trưởng nhanh bằng tốc độ ra quyết định của một người."]);
+  if (area.org<5 && area.fun>=6.5) flags.push(["Đội ngũ bù đắp hệ thống yếu","Nhân viên đang làm việc tốt dù hệ thống tổ chức chưa hỗ trợ. Họ đang bù bằng nỗ lực cá nhân, và đó là nguy cơ kiệt sức."]);
+  if (area.exp>=6.5 && area.fun<5) flags.push(["Không khí tốt, hiệu quả chưa tương xứng","Đội ngũ cảm thấy tốt, nhưng chưa được trao quyền hoặc chưa có lộ trình phát triển để biến năng lượng đó thành kết quả."]);
+  if (area.per<5) flags.push(["Nguồn lực cá nhân thấp","Đội ngũ đang thiếu năng lượng hoặc sự hỗ trợ. Mọi thay đổi lớn sẽ được đón nhận chậm cho đến khi vùng này được cải thiện."]);
+  if (overall>=7 && level<=1) flags.push(["Động lực chưa bền vững","Đội ngũ đang có động lực, nhưng nhờ con người hiện tại chứ chưa nhờ một văn hoá có chủ đích. Khi công ty lớn lên hoặc người chủ chốt rời đi, điều này có thể thay đổi."]);
+  if ((turnover!=null&&turnover>30)||(early!=null&&early>50)) flags.push(["Số liệu nghỉ việc đáng chú ý",`Trong 12 tháng qua, ${f1(turnover)}% nhân sự đã nghỉ việc, trong đó ${f1(early)}% nghỉ ngay trong 6 tháng đầu. Đây là lý do nên lắng nghe trực tiếp từ đội ngũ.`]);
+  if (blind.length>=5) flags.push(["Điểm mù lớn","Có từ 5 câu trở lên anh/chị chưa trả lời được. Những gì CEO chưa nhìn thấy thì chưa thể quản trị."]);
+  return {s,area,cult,overall,gov,govName,level,turnover,early,blind,flags,nProc};
+}
+
+/* ===================== VẼ BÁO CÁO ===================== */
+function turnoverBand(t){ if(t==null)return "none"; return t<10?"good":t<20?"mid":t<=30?"weak":"bad"; }
+function earlyBand(t){ if(t==null)return "none"; return t<20?"good":t<35?"mid":t<=50?"weak":"bad"; }
+
+function cover(d,r){
+  const cells = Object.keys(Q).map(k=>band(r.s[k])).concat([turnoverBand(r.turnover),earlyBand(r.early)]);
+  return `<section class="page cover">
+  <div class="brand">Delivering Happiness Việt Nam</div>
+  <div style="margin-top:72px">
+    <h1>Báo cáo Động lực<br>& Văn hoá tổ chức</h1>
+    <p class="muted" style="font-size:17px">${d.company}<br>${d.date}</p>
+  </div>
+  <div class="grid32" role="img" aria-label="32 chỉ số của tổ chức">${cells.map(c=>`<span class="c-${c}"></span>`).join("")}</div>
+  <div class="legend"><span><i class="c-good"></i>Tốt</span><span><i class="c-mid"></i>Khá</span><span><i class="c-weak"></i>Trung bình</span><span><i class="c-bad"></i>Yếu</span></div>
+  </section>`;
+}
+
+function toc(){
+  const rows=[["Vì sao động lực và văn hoá quan trọng?","3"],["Báo cáo được xây dựng thế nào?","4"],["Tổng quan","5"],["Điểm nổi bật & điểm yếu","6"],["Mô hình động","7"],["Cảm nhận về công việc","8"],["Phát huy năng lực cá nhân","9"],["Hệ thống tổ chức","10"],["Nguồn lực cá nhân","11"],["Mô hình 3 tầng văn hoá","12"],["Lãnh đạo bằng văn hoá","13"],["Mức độ chủ đích","14"],["Hệ thống văn hoá","15"],["Giá trị tuyên bố và giá trị đang thực sống","16"],["Điểm mù, cờ cảnh báo và chỗ chưa khớp","17"],["Đánh giá trọng tâm","18"],["Phụ lục: câu trả lời mở","19"]];
+  return `<section class="page"><h2>Mục lục</h2>
+  <ul class="toc">${rows.map(r=>`<li><span>${r[0]}</span><span class="muted">${r[1]}</span></li>`).join("")}</ul>
+  <p class="muted small" style="margin-top:28px">Trang bìa tóm tắt toàn bộ báo cáo. Mỗi ô vuông là một chỉ số: 30 câu hỏi về động lực và văn hoá, cộng tỷ lệ nghỉ việc trong 12 tháng và tỷ lệ nghỉ trong 6 tháng đầu. Ô xanh là tốt, vàng là khá, cam là trung bình và đỏ là yếu. Ô xám là câu anh/chị chưa trả lời được.</p>
+  </section>`;
+}
+
+
+function bookingHref(){
+  return CONFIG.BOOKING_URL || `mailto:${CONFIG.CONTACT_EMAIL}?subject=${encodeURIComponent("Đặt lịch đọc kết quả khảo sát CEO – "+(window.__co||""))}`;
+}
+function cta(){
+  return `<div class="cta"><p class="ctah">Đặt lịch 45 phút đọc kết quả cùng chuyên gia Delivering Happiness Việt Nam</p>
+  <p class="muted" style="margin:0 0 14px">Cùng đọc sâu kết quả, bao gồm phần giá trị đang thực sống, và chọn 1–2 ưu tiên phù hợp nhất với tổ chức của anh/chị. Miễn phí, trực tuyến.</p>
+  <p style="margin:0"><a class="ctabtn" href="${bookingHref()}" target="_blank" rel="noopener" onclick="track('booking')">Chọn giờ phù hợp</a></p></div>
+  <div class="cta cta2"><p class="ctah">Bước tiếp theo: nghe chính đội ngũ nói</p>
+  <p class="muted" style="margin:0 0 14px">Báo cáo này là góc nhìn của anh/chị. Khảo sát đội ngũ (ẩn danh, khoảng 10 phút) cho thấy những chỗ đội ngũ cảm nhận khác với CEO, đó thường là nơi có đòn bẩy lớn nhất.</p>
+  <p style="margin:0" class="team-slot"><button class="ctabtn ghostcta" onclick="teamInterest(this)">Tôi muốn khảo sát đội ngũ</button></p></div>`;
+}
+
+function whyPage(){
+  return `<section class="page">
+  <h2>Vì sao động lực và văn hoá quan trọng?</h2>
+  <h3>Động lực nhân sự quan trọng vì đội ngũ có động lực</h3>
+  <p><b>Làm việc hiệu quả hơn.</b> Nghiên cứu cho thấy họ gắn kết hơn, phục vụ khách hàng tốt hơn, làm việc nhóm hiệu quả hơn và trở thành những người lãnh đạo tốt hơn.</p>
+  <p><b>Thích nghi với thay đổi nhanh hơn.</b> Khi thay đổi diễn ra với tốc độ chóng mặt như hiện nay, đội ngũ có động lực thích nghi tốt hơn, giúp CEO chủ động chuyển hướng doanh nghiệp liên tục để phù hợp với thị trường.</p>
+  <p><b>Gắn bó hơn.</b> Họ ít rời đi hơn, giúp giữ tỷ lệ nghỉ việc và chi phí tuyển dụng ở mức thấp.</p>
+  <p><b>Chủ động hơn.</b> Họ tự nhận việc và tự tìm cách làm tốt hơn mà không cần chờ giao, giảm tải cho quản lý và CEO.</p>
+  <p><b>Khoẻ mạnh hơn.</b> Họ ít ốm hơn, hồi phục nhanh hơn, có mặt nhiều hơn và mang nhiều năng lượng hơn đến công việc.</p>
+  <h3>Văn hoá tổ chức quan trọng vì nó giúp CEO</h3>
+  <p><b>Rảnh tay hơn.</b> Nhân sự chủ động hơn, nên CEO có thời gian tập trung đối mặt với những thay đổi, biến động đang diễn ra ngày càng nhanh.</p>
+  <p><b>Thảnh thơi hơn.</b> CEO mất ít thời gian hơn để xử lý những bất hoà nội bộ.</p>
+  <p><b>Bớt cô đơn hơn.</b> Mọi người có một ngôn ngữ chung trong tổ chức, nên CEO không phải một mình giữ và giải thích lại ý nghĩa của từng quyết định.</p>
+  </section>`;
+}
+
+function methodPage(){
+  return `<section class="page">
+  <h2>Báo cáo được xây dựng thế nào?</h2>
+  ${disclaimer()}
+  <h3>Đo động lực tại nơi làm việc</h3>
+  <p>Phần động lực dựa trên khung Happiness at Work Survey của Delivering Happiness, xây dựng từ mô hình động về phúc lợi (dynamic model of well-being) do New Economics Foundation phát triển cho Chương trình Foresight của Văn phòng Khoa học Chính phủ Anh. Mô hình xem xét bốn vùng ảnh hưởng lẫn nhau: Cảm nhận về công việc, Phát huy năng lực cá nhân, Hệ thống tổ chức và Nguồn lực cá nhân.</p>
+  <h3>Đo mức độ trưởng thành của văn hoá</h3>
+  <p>Phần văn hoá dựa trên mô hình 3 cấp độ văn hoá của Edgar Schein: biểu hiện hữu hình, giá trị chia sẻ và niềm tin ngầm định. Kết hợp với Culture Design Canvas, báo cáo xếp tổ chức vào một trong sáu cấp độ, từ quản trị bằng mệnh lệnh đến văn hoá được hệ thống hoá.</p>
+  <h3>Cách đặt câu hỏi</h3>
+  <p>Khảo sát chỉ hỏi CEO, và mỗi câu được viết theo dạng bằng chứng: điều gì đã thực sự xảy ra, bao lâu một lần, gần nhất là khi nào. Vì vậy báo cáo là <b>ước tính về tổ chức qua lăng kính CEO</b>. Lãnh đạo thường đánh giá trải nghiệm của đội ngũ cao hơn chính đội ngũ, nên kết quả nên được xem là giả thuyết để kiểm chứng.</p>
+  <h3>Nền tảng nghiên cứu</h3>
+  <p>Happiness Works, đơn vị tách ra từ New Economics Foundation để phát triển khảo sát Happiness at Work, đã cùng Robert Half nghiên cứu mức độ hạnh phúc trong công việc của hơn 24.000 người lao động tại 8 quốc gia. Phiên bản dành cho CEO trong báo cáo này do DHV phát triển.</p>
+  <h3>Cách đọc điểm số</h3>
+  <p>Mỗi câu trả lời được quy đổi sang thang 0–10, với 0 là thấp nhất và 10 là cao nhất. Điểm thành phần là trung bình của các câu trong thành phần đó. Xanh là tốt (từ 7.0), vàng là khá (5.0–6.9), cam là trung bình (2.5–4.9), đỏ là yếu (dưới 2.5). Câu trả lời “Tôi không biết” không được tính điểm và được đưa vào mục Điểm mù.</p>
+  <p class="muted small">Thang điểm này chưa so với chuẩn (benchmark). DHV sẽ xây chuẩn riêng cho doanh nghiệp Việt Nam khi đủ dữ liệu.</p>
+  </section>`;
+}
+
+function overview(d,r){
+  const t = r.overall>=8.5?"Theo góc nhìn của anh/chị, đội ngũ đang có trải nghiệm làm việc rất tốt. Việc cần làm là giữ vững và kiểm chứng bằng tiếng nói của chính đội ngũ."
+    : r.overall>=7?"Nền tảng động lực tại nơi làm việc tốt. Vẫn có một vài điểm yếu cụ thể đáng ưu tiên."
+    : r.overall>=5?"Đội ngũ đang ở mức khá: không có khủng hoảng, nhưng cũng chưa có lợi thế về con người."
+    : r.overall>=2.5?"Nhiều tín hiệu cho thấy đội ngũ đang chịu áp lực. Đây thường là giai đoạn người giỏi bắt đầu rời đi."
+    : "Động lực tại nơi làm việc đang ở mức đáng lo ngại và cần được ưu tiên ngay.";
+  return `<section class="page">
+  <h2>Tổ chức của anh/chị đang thế nào?</h2>
+  <div class="headrow">${badge(r.overall,"lg")}<div><p style="margin:0"><b>Chỉ số Động lực tại nơi làm việc trung bình là ${f1(r.overall)}</b> trên thang 0–10.</p><p class="muted" style="margin:0">${t}</p>${basis(Object.keys(Q),r)}</div></div>
+  <p class="discline">Đây là góc nhìn của anh/chị về tổ chức: phù hợp để định hướng, chưa phù hợp để ra quyết định lớn về nhân sự.</p>
+  <div class="summary">
+    <div><span class="muted small">Cách quản trị</span><strong>${r.govName}</strong></div>
+    <div><span class="muted small">Cấp độ văn hoá</span><strong>Cấp ${r.level}: ${LEVELS[r.level][0]}</strong></div>
+    <div><span class="muted small">Nghỉ việc 12 tháng qua</span><strong>${r.turnover==null?"Chưa có số liệu":`${d.left12m}/${d.staff} người (${f1(r.turnover)}%)`}</strong></div>
+  </div>
+  ${r.flags.length?`<h3>Điều cần chú ý nhất</h3>`+r.flags.slice(0,3).map(f=>`<div class="flag"><b>${f[0]}</b>${f[1]}</div>`).join(""):""}
+  ${cta()}
+  </section>`;
+}
+
+function basis(items,r){
+  const n=items.length, k=items.filter(i=>r.s[i]!=null).length;
+  const low = (n-k)>=2 && (n-k)/n>=0.25;
+  if (!low) return "";
+  return `<span class="basis low">Ít dữ liệu: chỉ có ${k}/${n} câu được trả lời, cần thận trọng khi đọc điểm này</span>`;
+}
+
+function disclaimer(){
+  return `<div class="disc"><p class="disch">Báo cáo này nên được đọc như thế nào</p>
+  <p>Báo cáo phản ánh góc nhìn nhanh của CEO về tổ chức của mình. Đây là một công cụ để CEO tự nhìn lại, giúp định hướng những việc cần làm để nâng cao động lực làm việc và phát triển văn hoá tổ chức.</p>
+  <p style="margin:0">Báo cáo chưa đủ độ chính xác để đưa ra những quyết định lớn về nhân sự. Để có kết quả chính xác, cần lấy thêm ý kiến của đội ngũ và so sánh với góc nhìn của CEO.</p></div>`;
+}
+
+function checks(d,r){
+  const s=r.s, a=d.ans, out=[];
+  const hi=k=>s[k]!=null&&s[k]>=6.6, lo=k=>s[k]!=null&&s[k]<=3.4;
+  if (hi("A8") && r.early!=null && r.early>35) out.push(["Người giỏi ở lại, người mới rời đi",`Những người giỏi nhất vẫn ở lại và phát triển, nhưng ${f1(r.early)}% số người nghỉ việc rời đi ngay trong 6 tháng đầu. Lõi đội ngũ ổn định; vấn đề có thể nằm ở tuyển dụng hoặc hội nhập người mới.`]);
+  if (hi("A1") && r.turnover!=null && r.turnover>20) out.push(["Nhân viên giới thiệu người quen, nhưng tỷ lệ nghỉ việc cao",`Nhân viên vẫn giới thiệu người quen vào làm, trong khi ${f1(r.turnover)}% nhân sự đã nghỉ trong 12 tháng. Nên kiểm tra xem những người được giới thiệu có ở lại lâu hơn không.`]);
+  if (a.A2==="d" && (lo("A9")||lo("A13"))) out.push(["Ít nghe than phiền, nhưng dấu hiệu quá tải cao","Anh/chị hiếm khi nghe nhân viên than phiền, trong khi số người làm ngoài giờ hoặc có dấu hiệu kiệt sức đáng kể. Có thể nhân viên không chia sẻ khó khăn với CEO."]);
+  if (a.B5==="d" && lo("B6")) out.push(["Giá trị đã định nghĩa, nhưng ít người sống theo","Giá trị cốt lõi đã có định nghĩa và hành vi cụ thể, nhưng ít nhân viên kể được một lần sống theo giá trị gần đây. Khoảng cách nằm ở khâu triển khai, không ở khâu xây dựng."]);
+  if (a.B4==="d" && lo("B1")) out.push(["Giá trị là công cụ chính, nhưng nhân viên vẫn chờ hỏi","Anh/chị cho rằng giá trị đã thành ngôn ngữ hằng ngày, nhưng khi chưa có quy định, nhân viên vẫn chờ hỏi cấp trên."]);
+  if (hi("B3") && lo("B2")) out.push(["Công ty chạy được khi vắng CEO, nhưng CEO vẫn bận vận hành","Đội ngũ có thể tự vận hành khi anh/chị vắng mặt, nhưng phần lớn thời gian của anh/chị vẫn dành cho phê duyệt và vận hành. Có những việc anh/chị đang giữ mà không thật sự cần."]);
+  if (hi("A12") && lo("A5")) out.push(["Dám phản biện quản lý, nhưng ngại nói “tôi chưa biết”","Nhân viên dám bất đồng với quản lý, nhưng ít khi thừa nhận mình chưa biết hoặc xin trợ giúp. Sự cởi mở có thể mới dừng ở chuyện công việc, chưa tới chuyện cá nhân."]);
+  return out;
+}
+
+function blindFlags(r){
+  const bl = r.blind.length? r.blind.map(k=>`<div class="item">${badge(null)}<div><h4>${Q[k].n}</h4><p class="muted" style="margin:0">${Q[k].why}</p></div></div>`).join("")
+    : `<p class="muted">Anh/chị đã trả lời được tất cả các câu hỏi.</p>`;
+  const ck = checks(window.__D, r);
+  return `<section class="page"><h2>Điểm mù, cờ cảnh báo và chỗ chưa khớp</h2>
+  <h3>Điểm mù (${r.blind.length} câu)</h3>
+  <p>Đây là những câu anh/chị chọn “Tôi không biết”. Một điểm mù không phải là điểm yếu, nhưng là nơi CEO chưa có thông tin để quản trị.</p>
+  ${bl}
+  <h3>Cờ cảnh báo (${r.flags.length})</h3>
+  ${r.flags.length? r.flags.map(f=>`<div class="flag"><b>${f[0]}</b>${f[1]}</div>`).join("") : `<p class="muted">Không có cờ cảnh báo nào.</p>`}
+  <h3>Những chỗ chưa khớp (${ck.length})</h3>
+  <p>Đây là những câu trả lời có vẻ không khớp với nhau. Chúng không có nghĩa là anh/chị trả lời sai, mà là những chỗ nên kiểm chứng trực tiếp với đội ngũ.</p>
+  ${ck.length? ck.map(f=>`<div class="flag chk"><b>${f[0]}</b>${f[1]}</div>`).join("") : `<p class="muted">Không phát hiện chỗ nào chưa khớp.</p>`}
+  </section>`;
+}
+
+function highlights(r){
+  const items = AREAS.flatMap(x=>x.items).filter(k=>r.s[k]!=null).map(k=>[k,r.s[k]]).sort((p,q)=>q[1]-p[1]);
+  const half=Math.ceil(items.length/2), best=items.slice(0,half), worst=items.slice(half).reverse();
+  const li = ([k,v])=>`<li>${badge(v,"sm")}<span>${Q[k].n}</span></li>`;
+  return `<section class="page"><h2>Điểm nổi bật & điểm yếu</h2>
+  <p>Khảo sát bao quát nhiều yếu tố ảnh hưởng đến động lực làm việc của đội ngũ. Dưới đây là các thành phần tổ chức đang làm tốt nhất và yếu nhất.</p>
+  <div class="hl"><div><h3>Điểm cao nhất</h3><ol>${best.map(li).join("")}</ol></div>
+  <div><h3>Điểm thấp nhất</h3><ol>${worst.map(li).join("")}</ol></div></div>
+  </section>`;
+}
+
+function dynModel(r){
+  const fill = v=>({good:"var(--good)",mid:"var(--mid)",weak:"var(--weak)",bad:"var(--bad)",none:"var(--none)"})[band(v)];
+  const tcol = v=> band(v)==="mid"?"#3A2C00":"#FFFFFF";
+  const box=(x,y,label,v)=>`<g><rect x="${x}" y="${y}" width="220" height="74" rx="10" fill="var(--soft)" stroke="var(--line)"/>
+    <rect x="${x+12}" y="${y+13}" width="60" height="48" rx="6" fill="${fill(v)}"/><text x="${x+42}" y="${y+44}" text-anchor="middle" font-size="19" font-weight="800" fill="${tcol(v)}">${f1(v)}</text>
+    <text x="${x+84}" y="${y+33}" font-size="14" font-weight="700" fill="var(--ink)">${label[0]}</text><text x="${x+84}" y="${y+52}" font-size="14" font-weight="700" fill="var(--ink)">${label[1]||""}</text></g>`;
+  // read
+  let read=[];
+  const A=r.area;
+  if (A.org<5 && A.fun>=6.5) read.push("Đội ngũ đang phát huy năng lực tốt hơn mức hệ thống tổ chức hỗ trợ: họ đang bù bằng nỗ lực cá nhân.");
+  if (A.exp>=6.5 && A.fun<5) read.push("Không khí làm việc tốt, nhưng chưa chuyển thành cách làm việc hiệu quả.");
+  if (A.per<5) read.push("Nguồn lực cá nhân thấp sẽ làm chậm mọi thay đổi ở các vùng khác.");
+  const lo = AREAS.slice().sort((p,q)=>A[p.k]-A[q.k])[0];
+  read.push(`Vùng thấp nhất là <b>${lo.n}</b> (${f1(A[lo.k])}). ${lo.k==="org"?"Vì đây là vùng CEO kiểm soát trực tiếp, cải thiện ở đây thường lan toả nhanh nhất lên Phát huy năng lực cá nhân và Cảm nhận về công việc.":"Mô hình cho thấy vùng này ảnh hưởng đến các vùng còn lại, nên đây là điểm đáng xem trước."}`);
+  return `<section class="page"><h2>Mô hình động của động lực tại nơi làm việc</h2>
+  <p>Động lực tại nơi làm việc không cố định mà luôn chuyển động. Mô hình này cho thấy bốn vùng chính liên kết và ảnh hưởng lẫn nhau như thế nào.</p>
+  <div class="svgwrap"><svg viewBox="0 0 640 420" width="100%" style="max-width:640px;min-width:520px" role="img" aria-label="Mô hình động bốn vùng">
+   <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/></marker></defs>
+   ${box(210,20,["Cảm nhận về","công việc"],A.exp)}
+   ${box(210,170,["Phát huy năng","lực cá nhân"],A.fun)}
+   ${box(30,320,["Hệ thống","tổ chức"],A.org)}
+   ${box(390,320,["Nguồn lực","cá nhân"],A.per)}
+   <line x1="300" y1="168" x2="300" y2="98" stroke="var(--muted)" stroke-width="2" marker-end="url(#ar)" marker-start="url(#ar)"/>
+   <line x1="170" y1="318" x2="250" y2="248" stroke="var(--muted)" stroke-width="2" marker-end="url(#ar)"/>
+   <line x1="470" y1="318" x2="390" y2="248" stroke="var(--muted)" stroke-width="2" marker-end="url(#ar)"/>
+   <path d="M432 50 C 600 60, 610 220, 530 316" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#ar)"/>
+  </svg></div>
+  <p>Đọc mô hình từ trên xuống: <b>Cảm nhận về công việc</b> (đội ngũ cảm thấy gì) chịu ảnh hưởng bởi mức độ đội ngũ được <b>Phát huy năng lực cá nhân</b> (họ được làm việc ra sao). Đến lượt mình, khả năng phát huy năng lực phụ thuộc vào cả <b>Hệ thống tổ chức</b> nơi họ làm việc và <b>Nguồn lực cá nhân</b> (họ là ai). Các mũi tên cong thể hiện những vòng phản hồi quan trọng khác.</p>
+  <p>Cảm nhận và phát huy năng lực gắn liền với nhau: cách làm việc ảnh hưởng đến cảm nhận, và cảm nhận định hình cách làm việc. Khi cả hai cùng tốt, đội ngũ phát triển: họ không chỉ có động lực hơn mà còn làm việc tốt hơn.</p>
+  <p>Hệ thống tổ chức và nguồn lực cá nhân là hai yếu tố khác biệt. Có người phát triển trong một tổ chức khó khăn, có người chật vật trong một tổ chức tốt. Nhiều người phát triển hơn trong tổ chức tốt, nhưng không phải ai cũng như ai, nên cần nhìn riêng hai yếu tố này.</p>
+  <h3>Đọc mô hình của tổ chức anh/chị</h3>
+  ${read.map(x=>`<p>${x}</p>`).join("")}
+  </section>`;
+}
+
+function itemBlock(k,d,r){
+  const oi = optIndex(k,d.ans), v=r.s[k];
+  let ansHtml;
+  if (d.ans[k]==="e") ansHtml = `<div class="ans"><b>Anh/chị chọn:</b> Tôi không biết. Câu này được đưa vào mục Điểm mù.</div>`;
+  else if (d.ans[k]==="f") ansHtml = `<div class="ans"><b>Anh/chị chọn:</b> Chưa gặp trường hợp này. Câu này không tính điểm.</div>`;
+  else if (k==="B8") ansHtml = `<div class="ans"><b>Giá trị đang nằm trong:</b> ${(Array.isArray(d.ans.B8)?d.ans.B8:[]).join(", ")||"chưa có quy trình nào"}. ${Q[k].i[oi]}</div>`;
+  else ansHtml = `<div class="ans"><b>Anh/chị chọn:</b> ${Q[k].o[oi]}. ${Q[k].i[oi]}</div>`;
+  return `<div class="item">${badge(v)}<div><h4>${Q[k].n}</h4><p class="muted" style="margin:0">${Q[k].why}</p>${ansHtml}</div></div>`;
+}
+function sectionPage(def,score,d,r,title){
+  return `<section class="page"><h2>${def.n}</h2>
+  <div class="headrow">${badge(score,"lg")}<div><p style="margin:0">${def.intro}</p>${basis(def.items,r)}</div></div>
+  <div class="sec-sub">${def.items.map(k=>`<span class="chip">${badge(r.s[k],"sm")}${Q[k].n}</span>`).join("")}</div>
+  ${def.items.map(k=>itemBlock(k,d,r)).join("")}
+  </section>`;
+}
+
+function cultModel(r){
+  const C=r.cult;
+  const fill = v=>({good:"var(--good)",mid:"var(--mid)",weak:"var(--weak)",bad:"var(--bad)",none:"var(--none)"})[band(v)];
+  const tcol = v=> band(v)==="mid"?"#3A2C00":"#FFFFFF";
+  const node=(cx,cy,l1,l2,v)=>`<g><circle cx="${cx}" cy="${cy}" r="62" fill="var(--soft)" stroke="var(--line)"/>
+    <rect x="${cx-28}" y="${cy-44}" width="56" height="40" rx="6" fill="${fill(v)}"/><text x="${cx}" y="${cy-17}" text-anchor="middle" font-size="18" font-weight="800" fill="${tcol(v)}">${f1(v)}</text>
+    <text x="${cx}" y="${cy+18}" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink)">${l1}</text><text x="${cx}" y="${cy+35}" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink)">${l2}</text></g>`;
+  const L=C.lead,I=C.int,S=C.sys, nm={lead:"Lãnh đạo bằng văn hoá (niềm tin ngầm định)",int:"Mức độ chủ đích (giá trị chia sẻ)",sys:"Hệ thống văn hoá (biểu hiện hữu hình)"};
+  const sb=(cx,y,v)=>`<rect x="${cx-30}" y="${y}" width="60" height="36" rx="6" fill="${fill(v)}" stroke="#FFFFFF" stroke-width="2"/><text x="${cx}" y="${y+25}" text-anchor="middle" font-size="18" font-weight="800" fill="${tcol(v)}">${f1(v)}</text>`;
+  let reads=[];
+  if ([L,I,S].every(v=>v!=null&&v<4)) reads.push(["Điểm khởi đầu","Cả ba tầng đều ở mức thấp. Đây là lúc thuận lợi nhất để thiết kế văn hoá một cách có chủ đích ngay từ đầu, thay vì phải sửa một văn hoá đã thành nếp."]);
+  else if ([L,I,S].every(v=>v!=null&&v>=7)) reads.push(["Ba tầng văn hoá nhất quán","Biểu hiện, giá trị và niềm tin cùng mạnh và củng cố lẫn nhau. Việc cần làm là giữ vòng quay và kiểm chứng bằng tiếng nói của đội ngũ."]);
+  else {
+    if (I-L>=2) reads.push(["Văn hoá trên giấy","Mức độ chủ đích cao hơn Lãnh đạo bằng văn hoá. Tổ chức nói một điều, nhưng cách tổ chức thực sự được dẫn dắt cho thấy một niềm tin khác. Đội ngũ nghe giá trị, nhưng thấy quyết định vẫn đi theo mệnh lệnh."]);
+    if (L-I>=2) reads.push(["Văn hoá dựa vào người","Lãnh đạo bằng văn hoá đi trước giá trị được nói ra. Lãnh đạo đã trao quyền và tin tưởng, nhưng giá trị chưa được làm rõ. Văn hoá tốt đang nằm trong con người hiện tại, dễ phai khi tổ chức lớn lên."]);
+    if (I-S>=2) reads.push(["Giá trị chưa thành biểu hiện","Mọi người biết giá trị, nhưng chúng chưa hiện ra trong cách ra quyết định, phản hồi, nghi thức và khen thưởng hằng ngày."]);
+    if (S-I>=2) reads.push(["Biểu hiện chưa có gốc rễ","Tổ chức có nhiều hoạt động và cơ chế, nhưng chúng chưa được neo vào những giá trị chung."]);
+    if (!reads.length){ const lo=[["lead",L],["int",I],["sys",S]].sort((p,q)=>p[1]-q[1])[0]; reads.push(["Ba tầng đang tương đối nhất quán",`Bước tiếp theo là nâng tầng thấp nhất: ${nm[lo[0]]}.`]); }
+  }
+  return `<section class="page"><h2>Mô hình 3 tầng văn hoá của Edgar Schein</h2>
+  <p>Edgar Schein mô tả văn hoá tổ chức gồm ba tầng, từ những gì nhìn thấy được ở bên ngoài đến những niềm tin sâu nhất ở bên trong. Phần Văn hoá của khảo sát đo cả ba tầng này.</p>
+  <div class="svgwrap"><svg viewBox="0 0 600 470" width="100%" style="max-width:560px;min-width:440px" role="img" aria-label="Mô hình 3 tầng văn hoá của Edgar Schein">
+   <circle cx="300" cy="238" r="222" fill="#FFA43A"/>
+   <circle cx="300" cy="280" r="176" fill="#3FB8F0"/>
+   <circle cx="300" cy="326" r="124" fill="#1E5BFF" stroke="#FFFFFF" stroke-width="4"/>
+   <text x="300" y="40" text-anchor="middle" font-size="17" font-weight="800" fill="#FFFFFF">Hệ thống văn hoá</text>
+   <text x="300" y="56" text-anchor="middle" font-size="12" fill="#FFFFFF">(biểu hiện hữu hình)</text>
+   ${sb(300,62,S)}
+   <text x="300" y="132" text-anchor="middle" font-size="17" font-weight="800" fill="#FFFFFF">Mức độ chủ đích</text>
+   <text x="300" y="148" text-anchor="middle" font-size="12" fill="#FFFFFF">(giá trị chia sẻ)</text>
+   ${sb(300,154,I)}
+   <text x="300" y="268" text-anchor="middle" font-size="16" font-weight="800" fill="#FFFFFF">Lãnh đạo bằng văn hoá</text>
+   <text x="300" y="290" text-anchor="middle" font-size="13" fill="#FFFFFF">(niềm tin ngầm định)</text>
+   ${sb(300,302,L)}
+   <text x="300" y="384" text-anchor="middle" font-size="12" fill="#FFFFFF">Cấp độ văn hoá ${r.level}/5</text>
+  </svg></div>
+  <p><b>Hệ thống văn hoá</b> là tầng biểu hiện hữu hình: những gì có thể nhìn thấy, như cách ra quyết định, cách phản hồi, cách đối xử với lỗi, các nghi thức và hành vi được khen thưởng.</p>
+  <p><b>Mức độ chủ đích</b> là tầng giá trị chia sẻ: những gì tổ chức nói rằng mình tin, gồm sứ mệnh và giá trị cốt lõi, cùng mức chúng được định nghĩa, được sống và được bảo vệ.</p>
+  <p><b>Lãnh đạo bằng văn hoá</b> là tầng niềm tin ngầm định: những giả định căn bản không ai nói ra nhưng chi phối mọi quyết định, chẳng hạn “nhân viên cần được kiểm soát” hay “nhân viên đáng được tin tưởng”. Tầng này lộ ra rõ nhất qua cách tổ chức thực sự được dẫn dắt hằng ngày.</p>
+  <p>Văn hoá chỉ bền khi ba tầng nhất quán: biểu hiện phản ánh đúng giá trị, và giá trị trùng với niềm tin thật. Vì vậy điều quan trọng nhất không phải điểm từng tầng, mà là độ lệch giữa chúng.</p>
+  <h3>Đọc ba tầng văn hoá của tổ chức anh/chị</h3>
+  ${reads.map(x=>`<div class="flag" style="border-left-color:var(--accent)"><b>${x[0]}</b>${x[1]}</div>`).join("")}
+  <h3>Cách quản trị: ${r.govName}</h3>
+  <p class="muted">${r.gov<4?"Tổ chức đang vận hành chủ yếu bằng quy định, phê duyệt và sự có mặt của CEO. Cách này hiệu quả khi công ty nhỏ, nhưng trở thành giới hạn tăng trưởng khi số người tăng lên.":r.gov<=6.5?"Một số phần của tổ chức đã tự vận hành, một số vẫn phụ thuộc vào kiểm soát. Đây là giai đoạn văn hoá có thể được định hình rõ ràng nhất.":"Nhân viên ra quyết định dựa trên những gì tổ chức tin tưởng, không cần chờ chỉ đạo. CEO có thể dành thời gian cho việc ở tầm chiến lược."}</p>
+  <h3>Cấp độ chủ đích của văn hoá</h3>
+  <div class="ladder">${LEVELS.map((l,i)=>`<div class="${i===r.level?"on":""}"><span class="n">${i}</span><span>${l[0]}</span></div>`).join("")}</div>
+  <p class="muted">${LEVELS[r.level][1]}</p>
+  </section>`;
+}
+
+function valuesPage(d,owner){
+  if (owner) {
+    const p=d.profile||{};
+    return `<section class="page"><h2>Giá trị tuyên bố và giá trị đang thực sống</h2>
+  <p class="muted">Bản dành cho Coachsultant DHV. CEO không thấy trang này trong báo cáo của mình.</p>
+  <h3>Thông tin nền</h3>
+  <table class="tbl"><tr><td>CEO</td><td>${esc(p.name||"–")}</td></tr><tr><td>Công ty</td><td>${esc(p.company||"–")}</td></tr><tr><td>Ngành</td><td>${esc(p.industry||"–")}</td></tr><tr><td>Số năm hoạt động</td><td>${esc(p.years||"–")}</td></tr><tr><td>Nhân sự</td><td>${esc(p.staff||"–")}</td></tr><tr><td>Nghỉ việc 12 tháng / trong 6 tháng đầu</td><td>${esc(p.left12m||"–")} / ${esc(p.leftEarly||"–")}</td></tr></table>
+  ${OPEN.map(o=>`<h3>${o[0]}. ${esc(o[1])}</h3><p style="white-space:pre-wrap">${esc((d.open||{})[o[0]]||"(không trả lời)")}</p>`).join("")}
+  </section>`;
+  }
+  return `<section class="page"><h2>Giá trị tuyên bố và giá trị đang thực sống</h2>
+  <p>Giá trị một tổ chức thật sự sống không nằm trên tường, mà nằm trong những quyết định khó: ai được tuyển, ai được thưởng, ai phải ra đi, và tổ chức chọn gì khi phải đánh đổi.</p>
+  <div class="note"><p style="margin:0"><b>Phần này được đọc cùng Coachsultant DHV.</b></p><p class="muted" style="margin:6px 0 0">Những câu chuyện anh/chị chia sẻ ở các câu hỏi mở sẽ được phân tích để tìm ra những giá trị đang thực sự chi phối quyết định, và đối chiếu với giá trị công ty tuyên bố. Coachsultant DHV sẽ cùng anh/chị đọc phần này trong buổi làm việc.</p></div>
+  </section>`;
+}
+
+
+function focus(d,r){
+  const all = Object.keys(Q).filter(k=>r.s[k]!=null);
+  const org = new Set(["A9","A10","A11","A12"]);
+  const best = all.slice().sort((p,q)=>r.s[q]-r.s[p]).filter(k=>r.s[k]>=5).slice(0,3);
+  const worst = all.slice().sort((p,q)=> (r.s[p]-r.s[q]) || ((org.has(q)?1:0)-(org.has(p)?1:0)) ).slice(0,3);
+  const row = k=>`<div class="item">${badge(r.s[k])}<div><h4>${Q[k].n}</h4><p style="margin:0">${Q[k].i[optIndex(k,d.ans)]}</p></div></div>`;
+  return `<section class="page"><h2>Đánh giá trọng tâm</h2>
+  <h3>Điểm mạnh để khuếch đại</h3>
+  ${best.length? best.map(row).join("") : `<p class="muted">Chưa có thành phần nào đạt từ mức khá trở lên.</p>`}
+  <h3>Khoảng trống ưu tiên</h3>
+  ${worst.map(row).join("")}
+  <h3>Bước tiếp theo</h3>
+  <p>Báo cáo này phản ánh tổ chức qua góc nhìn của anh/chị. Nhiều nghiên cứu cho thấy lãnh đạo thường đánh giá trải nghiệm của đội ngũ cao hơn chính đội ngũ. Để có bức tranh đầy đủ và giải pháp phù hợp, hãy cùng chuyên gia DHV đọc kết quả.</p>
+  ${cta()}
+  <div class="foot">Delivering Happiness Việt Nam · Phòng 304, tòa nhà Hanoi Toserco, số 2 Núi Trúc, Hà Nội · phan.hv@deliveringhappiness.vn</div>
+  </section>`;
+}
+
+function appendix(d){
+  const p=d.profile||{};
+  return `<section class="page"><h2>Phụ lục: câu trả lời mở</h2>
+  <p class="muted">Nguyên văn câu trả lời của anh/chị, dùng cho buổi làm việc với Coachsultant DHV.</p>
+  <table class="tbl"><tr><td>CEO</td><td>${esc(p.name||"–")}</td></tr><tr><td>Công ty</td><td>${esc(p.company||"–")}</td></tr><tr><td>Ngành</td><td>${esc(p.industry||"–")}</td></tr><tr><td>Số năm hoạt động</td><td>${esc(p.years||"–")}</td></tr><tr><td>Nhân sự</td><td>${esc(p.staff||"–")}</td></tr><tr><td>Nghỉ việc 12 tháng / trong 6 tháng đầu</td><td>${esc(p.left12m||"–")} / ${esc(p.leftEarly||"–")}</td></tr></table>
+  ${OPEN.map(o=>`<h3>${o[0]}. ${esc(o[1])}</h3><p style="white-space:pre-wrap">${esc((d.open||{})[o[0]]||"(không trả lời)")}</p>`).join("")}
+  </section>`;
+}
+
+function render(d,owner){
+  const r = compute(d); window.__D = d;
+  document.getElementById("report").innerHTML =
+    cover(d,r) + toc() + whyPage() + methodPage() + overview(d,r) + highlights(r) + dynModel(r) +
+    AREAS.map(x=>sectionPage(x,r.area[x.k],d,r)).join("") +
+    cultModel(r) +
+    CULT.map(x=>sectionPage(x,r.cult[x.k],d,r)).join("") +
+    valuesPage(d,owner) + blindFlags(r) + focus(d,r) + (owner?"":appendix(d));
+}
+/* ===================== KHẢO SÁT ===================== */
+const ARTIFACT_URL = location.origin + location.pathname;
+const STORE_KEY = "dhv-ceo-survey-v1";
+const FO = {
+A2:["Gần như hằng ngày","Hằng tuần","Vài lần trong tháng","Hiếm khi, và khi có thì được xử lý tận gốc trong vòng một tuần"],
+A5:["Không lần nào; nhân viên thường im lặng rồi tự xoay xở","1–2 lần, chủ yếu từ vài người thân với lãnh đạo","Nhiều lần, ở phần lớn các nhóm","Thường xuyên, kể cả quản lý và người mới, và người hỏi được hỗ trợ ngay mà không bị đánh giá"],
+A6:["Mọi trường hợp đều phải xin phép quản lý hoặc CEO","Chỉ việc rất nhỏ đã có quy định sẵn","Có hạn mức rõ và được tự quyết trong hạn mức","Được tin tưởng tự quyết rồi báo lại sau; quản lý cung cấp bối cảnh, không đưa đáp án"],
+A7:["Các bên đổ lỗi cho nhau, CEO phải phân xử","Phải có cuộc họp của quản lý mới gỡ được","Người phụ trách các bên tự gọi nhau xử lý","Nhân viên chủ động hỗ trợ nhau, kể cả việc ngoài phạm vi của mình"],
+A8:["Đã nghỉ cả","Còn, nhưng vẫn vị trí và phạm vi cũ","Còn, phạm vi công việc đã lớn hơn rõ rệt","Còn, đã được đề bạt hoặc đang dẫn dắt người khác"],
+A10:["Không nêu được mục tiêu nào, chỉ kể các đầu việc đang làm","Nêu được mục tiêu, nhưng không rõ đo bằng gì","Nêu được mục tiêu và chỉ số đo, nhưng không giải thích được vì sao nó quan trọng","Nêu được mục tiêu, chỉ số, vì sao nó quan trọng, và mình đang ở đâu so với mục tiêu"],
+A11:["Gần như không; phản hồi chỉ dừng ở CSKH hoặc quản lý","Chủ yếu khi có khiếu nại","Định kỳ, cả khen lẫn chê, được chia sẻ toàn công ty","Hằng tuần, có nghi thức kể chuyện khách hàng gắn với sứ mệnh công ty"],
+A12:["Họ vẫn làm theo ý của quản lý và bỏ qua ý kiến cá nhân của mình","Họ phàn nàn sau lưng hoặc qua kênh riêng, không nói thẳng","Họ nói thẳng với quản lý, và ý kiến được lắng nghe","Họ nói thẳng, và đã có trường hợp quản lý điều chỉnh quyết định nhờ ý kiến đó trong 3 tháng qua"],
+A13:["Trên 20%","10–20%","Dưới 10%","Gần như không có, và công ty có hoạt động chủ động chăm sóc sức khoẻ"],
+A14:["Họ tự xoay xở; vấn đề thường chỉ lộ ra khi đã trễ hạn","Phải báo lên quản lý thì mới có người hỗ trợ","Đồng nghiệp hoặc quản lý hướng dẫn, chỉ bảo, cover khi được nhờ","Đồng nghiệp và quản lý tự nhận ra và vào hỗ trợ, cả trong công việc lẫn ngoài công việc"],
+A15:["Thường xuyên cả đêm và cuối tuần, và được kỳ vọng trả lời ngay","Thường xuyên, nhưng không bắt buộc trả lời","Chỉ khi thật sự khẩn cấp","Có quy ước rõ ràng và lãnh đạo làm gương trước"],
+A16:["Hoảng, chờ CEO xử lý, có người nghỉ","Xử lý được nhưng phụ thuộc CEO","Tự xử lý được và nhanh chóng ổn định lại","Tự xử lý, tự rút kinh nghiệm và sửa quy trình mà không cần nhắc"],
+B1:["Dừng lại chờ hỏi CEO hoặc quản lý","Hỏi quản lý trực tiếp rồi làm theo","Tự quyết theo kinh nghiệm hoặc “cách mọi người vẫn làm”","Tự quyết dựa trên giá trị và nguyên tắc của công ty, giải thích được lý do"],
+B3:["Nhiều việc dừng lại","Vẫn chạy nhưng chậm, nhiều quyết định chờ anh/chị","Chạy bình thường, chỉ vài quyết định lớn chờ","Chạy bình thường, đội ngũ ra cả quyết định quan trọng đúng như anh/chị sẽ làm"],
+B4:["Nội quy, KPI và thưởng phạt","Quy trình và sự giám sát của quản lý","Tấm gương lãnh đạo và “không khí chung”","Giá trị cốt lõi được cụ thể hoá thành hành vi và trở thành một phần ngôn ngữ hằng ngày"],
+B5:["Chưa có","Có trong đầu tôi, chưa viết ra","Đã viết ra tên các giá trị","Đã viết ra, mỗi giá trị có định nghĩa và các hành vi cụ thể"],
+B7:["Không nhớ có lần nào","Chỉ có quản lý nhắc cấp dưới","Có nhân viên nhắc nhau trong 6 tháng qua","Thường xuyên, kể cả nhắc ngược lên lãnh đạo"],
+B9:["Vẫn giữ, vì người giỏi khó tìm","Biết rõ vấn đề nhưng chưa xử lý","Đã xử lý, nhưng sau thời gian dài","Xử lý dứt khoát, và cả đội hiểu rõ lý do"],
+B10:["Thực tế mọi quyết định quan trọng đều do tôi","Quản lý đề xuất, tôi duyệt","Người phụ trách quyết sau khi tham khảo các bên liên quan","Những người trực tiếp liên quan đến vấn đề tự quyết, theo nguyên tắc rõ ràng dựa trên giá trị cốt lõi và sứ mệnh của tổ chức"],
+B11:["Không nhớ có lần nào","Hơn 6 tháng trước","Trong 6 tháng qua","Thường xuyên, vì tôi chủ động hỏi và có kênh định kỳ"],
+B12:["Bị phạt hoặc kỷ luật; lần sau người ta giấu lỗi","Bị nhắc nhở, rút kinh nghiệm riêng","Cả nhóm phân tích nguyên nhân, không quy lỗi cá nhân","Người mắc lỗi tự chia sẻ công khai để cả đội học, và được ghi nhận vì điều đó"],
+B13:["Chủ yếu tiệc cuối năm, sinh nhật","Có vài hoạt động, nhưng không gắn với giá trị","Có nghi thức định kỳ gắn với giá trị (ví dụ vinh danh hành vi theo giá trị hằng tháng)","Nhiều nghi thức gắn với giá trị, do chính nhân viên duy trì"],
+B14:["Chỉ vì kết quả kinh doanh","Kết quả cộng với sự chăm chỉ, thâm niên","Kết quả, nhưng chỉ khi đạt được bằng cách làm đúng giá trị (đạt số mà làm sai cách thì không được thưởng)","Hành vi sống đúng giá trị được ghi nhận riêng, ngang hàng với kết quả, có tiêu chí rõ (có người được thưởng chủ yếu vì sống đúng giá trị)"]
+};
+const FQ = {
+A2:"Trong tháng qua, anh/chị nghe nhân viên than quá tải, chờ duyệt, làm trùng lặp, hoặc thấy căng thẳng (cáu gắt, xung đột) bao lâu một lần?",
+A3:"Nếu hỏi ngẫu nhiên 5 nhân viên ở cấp thấp nhất trong công ty (những người không quản lý ai) “Công việc của bạn làm cuộc sống khách hàng tốt hơn thế nào?”, bao nhiêu người kể được một ví dụ cụ thể (tên khách, câu chuyện thật)?",
+A5:"Trong tháng qua, anh/chị chứng kiến bao nhiêu lần một nhân viên công khai nói “tôi chưa biết”, hỏi lại một điều mà mọi người nghĩ là họ đã phải biết, hoặc xin trợ giúp trước đồng nghiệp hay trong cuộc họp?",
+A6:"Khi xử lý một vấn đề với khách hàng (đổi trả, bồi thường, ngoại lệ), nhân viên tuyến đầu được tự quyết đến đâu?",
+A13:"Trong 3 tháng qua, bao nhiêu % nhân viên nghỉ ốm nhiều lần hoặc có dấu hiệu kiệt sức (than mệt kéo dài, hiệu suất giảm rõ)?",
+A16:"Khi có sự cố lớn gần nhất (mất khách lớn, lỗi nghiêm trọng, doanh số giảm), đội ngũ phản ứng thế nào?",
+B2:"Trong một tuần bình thường, bao nhiêu % thời gian của anh/chị dành cho phê duyệt, kiểm tra và xử lý việc vận hành hằng ngày?",
+B3:"Nếu anh/chị vắng mặt hoàn toàn 2 tuần (không điện thoại), điều gì xảy ra?",
+B6:"Nếu hỏi ngẫu nhiên 5 nhân viên, bao nhiêu người nêu đúng giá trị cốt lõi và kể được một lần chính họ đã làm theo giá trị đó trong tuần qua?",
+B7:"Lần gần nhất một nhân viên nhắc đồng nghiệp (ngang cấp hoặc cấp trên) vì làm trái giá trị là khi nào?",
+B9:"Trong 12 tháng qua, công ty xử lý thế nào với một người giỏi chuyên môn nhưng liên tục làm trái giá trị?",
+B11:"Lần gần nhất anh/chị nhận phản hồi thẳng thắn, mang tính góp ý về chính cách lãnh đạo của mình từ một nhân viên là khi nào?"
+};
+const B8OPTS = ["Tuyển dụng (câu hỏi phỏng vấn theo giá trị)","Hội nhập","Đánh giá hiệu suất","Khen thưởng, ghi nhận","Đề bạt","Cho thôi việc"];
+const OPEN = [
+ ["C1","Anh/chị thường giải thích “công ty mình tồn tại để làm gì” với một nhân viên mới như thế nào? Nếu đã có giá trị cốt lõi, hãy liệt kê."],
+];
+const SECTION_OF = code => {
+  const a = AREAS.find(x=>x.items.includes(code)); if (a) return "Động lực tại nơi làm việc: "+a.n;
+  const c = CULT.find(x=>x.items.includes(code)); if (c) return "Văn hoá tổ chức: "+c.n;
+  return "Câu hỏi mở";
+};
+const CODES = AREAS.flatMap(x=>x.items).concat(CULT.flatMap(x=>x.items));
+const STEPS = ["intro","profile"].concat(CODES, OPEN.map(o=>o[0]), ["finish"]);
+const QSTEPS = STEPS.length-3; // countable steps
+
+let S = {i:0, p:{}, a:{}, c:{}, ord:{}};
+function save(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify(S)); }catch(e){} }
+function load(){ try{ const v=localStorage.getItem(STORE_KEY); if(v){ const o=JSON.parse(v); if(o&&typeof o.i==="number") S=Object.assign(S,o);} }catch(e){}
+  if (!(S.i>=0 && S.i<STEPS.length)) S.i = Object.keys(S.a||{}).length ? STEPS.length-1 : 0;
+  if (S.i===STEPS.length-1 && !CODES.every(k=>k in (S.a||{}))) S.i = 1;
+}
+function esc(t){ return String(t==null?"":t).replace(/[&<>"]/g, ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"})[ch]); }
+function shuffled(code){
+  if (!S.ord[code]) { const o=["a","b","c","d"]; for(let i=o.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[o[i],o[j]]=[o[j],o[i]];} S.ord[code]=o; save(); }
+  return S.ord[code];
+}
+const app = () => document.getElementById("app");
+function go(n){ S.i=Math.max(0,Math.min(STEPS.length-1,n)); save(); draw(); window.scrollTo(0,0); }
+
+function shell(inner, opts={}){
+  const k = STEPS[S.i];
+  const done = Math.max(0, S.i-1), pct = Math.round(done/(STEPS.length-2)*100);
+  const prog = (k==="intro")? "" : `<div class="prog"><div style="width:${pct}%"></div></div><div class="progtxt muted small">${Math.min(done+1,STEPS.length-2)}/${STEPS.length-2}</div>`;
+  return `<section class="page sv">${prog}${inner}
+    ${opts.back!==false && S.i>0 ? `<button class="link" onclick="go(S.i-1)">Quay lại</button>`:""}</section>`;
+}
+function draw(){
+  document.getElementById("report").innerHTML="";
+  document.getElementById("bar").innerHTML="";
+  const k = STEPS[S.i];
+  if (k==="intro") return drawIntro();
+  if (k==="profile") return drawProfile();
+  if (k==="finish") return finish();
+  if (k[0]==="C") return drawOpen(k);
+  if (k==="B8") return drawB8();
+  return drawQ(k);
+}
+function drawIntro(){
+  const resume = S.i===0 && Object.keys(S.a).length>0;
+  app().innerHTML = shell(`
+    <div class="brand muted">Delivering Happiness Việt Nam</div>
+    <h1 style="margin-top:28px">Khảo sát Động lực & Văn hoá tổ chức</h1>
+    <p style="font-size:17px">Dành cho CEO và lãnh đạo cấp cao. 31 câu hỏi, khoảng 12 phút. Khi hoàn thành, anh/chị nhận ngay báo cáo về động lực của đội ngũ và mức độ trưởng thành văn hoá của tổ chức.</p>
+    <h3>Ba điều giúp kết quả chính xác hơn</h3>
+    <p>Trả lời theo những gì <b>đã thực sự xảy ra</b>, không theo điều anh/chị mong muốn.</p>
+    <p>Nếu không chắc, hãy chọn <b>“Tôi không biết”</b>. Đó cũng là một dữ liệu quan trọng trong báo cáo.</p>
+    <p>Báo cáo phản ánh đội ngũ qua góc nhìn của anh/chị, nên hãy nghĩ về cả tổ chức, không chỉ những người làm việc gần anh/chị.</p>
+    <p class="muted small">Khi anh/chị hoàn thành, câu trả lời và báo cáo được gửi về Delivering Happiness Việt Nam để chuẩn bị buổi đọc kết quả. DHV bảo mật thông tin, không chia sẻ cho bên thứ ba và chỉ dùng tổng hợp ẩn danh để xây chuẩn so sánh cho doanh nghiệp Việt Nam.</p>
+    <div class="actions"><button class="btn" onclick="go(1)">${resume?"Làm tiếp":"Bắt đầu"}</button>
+    ${resume?`<button class="btn ghost" onclick="resetAll()">Làm lại từ đầu</button>`:""}</div>
+  `,{back:false});
+}
+function drawProfile(){
+  const p=S.p;
+  const f=(id,label,type,ph,hint)=>`<label class="fld"><span>${label}</span><input id="${id}" type="${type}" ${type==="number"?'inputmode="numeric" min="0"':""} value="${esc(p[id]??"")}" placeholder="${ph||""}">${hint?`<small class="muted">${hint}</small>`:""}</label>`;
+  app().innerHTML = shell(`
+    <div class="sec muted small">Thông tin nền</div>
+    <h2>Về tổ chức của anh/chị</h2>
+    ${f("name","Họ tên anh/chị","text","")}
+    ${f("company","Tên công ty","text","")}
+    ${f("email","Email","email","","DHV gửi báo cáo và liên hệ đặt lịch qua email hoặc Zalo.")}
+    ${f("phone","Số điện thoại / Zalo","tel","")}
+    ${f("industry","Ngành","text","Ví dụ: thương mại điện tử, giáo dục…")}
+    ${f("years","Số năm hoạt động","number","")}
+    ${f("staff","Tổng số nhân sự toàn thời gian","number","")}
+    ${f("left12m","Số người nghỉ việc trong 12 tháng qua","number","","Tính cả nghỉ chủ động và bị cho nghỉ. Để trống nếu không có số liệu.")}
+    ${f("leftEarly","Trong số đó, bao nhiêu người nghỉ trong 6 tháng đầu làm việc?","number","","Để trống nếu không có số liệu.")}
+    <p id="err" class="err" role="alert"></p>
+    <div class="actions"><button class="btn" onclick="saveProfile()">Tiếp tục</button></div>`);
+}
+function saveProfile(){
+  const g=id=>document.getElementById(id).value.trim();
+  const p={name:g("name"),company:g("company"),email:g("email"),phone:g("phone"),industry:g("industry"),years:g("years"),staff:g("staff"),left12m:g("left12m"),leftEarly:g("leftEarly")};
+  const err=document.getElementById("err");
+  if(!p.company){ err.textContent="Nhập tên công ty để tiếp tục."; return; }
+  if(!p.email && !p.phone){ err.textContent="Nhập email hoặc số điện thoại để nhận báo cáo và đặt lịch."; return; }
+  if(p.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(p.email)){ err.textContent="Email chưa đúng định dạng."; return; }
+  const n=v=>v===""?null:Number(v);
+  if(p.staff!=="" && !(n(p.staff)>0)){ err.textContent="Số nhân sự cần lớn hơn 0."; return; }
+  if(n(p.left12m)!=null && n(p.leftEarly)!=null && n(p.leftEarly)>n(p.left12m)){ err.textContent="Số người nghỉ trong 6 tháng đầu không thể lớn hơn tổng số người nghỉ."; return; }
+  S.p=p; go(S.i+1);
+}
+function drawQ(code){
+  const opts = FO[code] || Q[code].o, ord = shuffled(code), cur = S.a[code];
+  const extra = code==="B9" ? [["f","Chưa gặp trường hợp này"]] : [];
+  const list = ord.map(l=>[l,opts["abcd".indexOf(l)]]).concat(extra,[["e","Tôi không biết / không chắc"]]);
+  app().innerHTML = shell(`
+    <div class="sec muted small">${SECTION_OF(code)}</div>
+    <h2 class="qt">${esc(FQ[code]||Q[code].q)}</h2>
+    <div class="opts">${list.map(([l,t])=>`<button class="opt ${cur===l?"on":""} ${l==="e"||l==="f"?"alt":""}" onclick="pick('${code}','${l}',this)">${esc(t)}</button>`).join("")}</div>`);
+}
+function pick(code,l,el){ S.a[code]=l; save(); document.querySelectorAll(".opt").forEach(b=>b.classList.remove("on")); el.classList.add("on"); setTimeout(()=>go(S.i+1),220); }
+function drawB8(){
+  const cur = S.a.B8;
+  const sel = Array.isArray(cur)? cur : [];
+  app().innerHTML = shell(`
+    <div class="sec muted small">${SECTION_OF("B8")}</div>
+    <h2 class="qt">Giá trị cốt lõi đang nằm trong những quy trình nào?</h2>
+    <p class="muted">Chọn tất cả các quy trình đang thật sự dùng giá trị cốt lõi.</p>
+    <div class="opts">${B8OPTS.map(t=>`<button class="opt chk ${sel.includes(t)?"on":""}" onclick="toggleB8(this)" data-v="${esc(t)}">${esc(t)}</button>`).join("")}
+      <button class="opt alt ${Array.isArray(cur)&&cur.length===0?"on":""}" onclick="b8Only([])">Chưa có quy trình nào</button>
+      <button class="opt alt ${cur==="e"?"on":""}" onclick="b8Only('e')">Tôi không biết / không chắc</button></div>
+    <p id="err" class="err" role="alert"></p>
+    <div class="actions"><button class="btn" onclick="b8Next()">Tiếp tục</button></div>`);
+}
+function toggleB8(btn){ btn.classList.toggle("on"); document.querySelectorAll(".opt.alt").forEach(b=>b.classList.remove("on")); }
+function b8Only(v){ S.a.B8=v; save(); setTimeout(()=>go(S.i+1),180); }
+function b8Next(){
+  const sel=[...document.querySelectorAll(".opt.chk.on")].map(b=>b.dataset.v);
+  if(!sel.length){ document.getElementById("err").textContent="Chọn ít nhất một quy trình, hoặc “Chưa có quy trình nào”."; return; }
+  S.a.B8=sel; go(S.i+1);
+}
+function drawOpen(code){
+  const q = OPEN.find(o=>o[0]===code), idx = OPEN.indexOf(q);
+  app().innerHTML = shell(`
+    <div class="sec muted small">Câu hỏi mở</div>
+    <h2 class="qt">${esc(q[1])}</h2>
+    <textarea id="ta" rows="7" placeholder="Anh/chị có thể kể ngắn gọn, như đang kể cho một người bạn.">${esc(S.c[code]||"")}</textarea>
+    <p class="muted small">Mẹo: trên điện thoại, bấm biểu tượng micro trên bàn phím để nói thay vì gõ. Câu trả lời ở phần này được lưu nguyên văn ở phụ lục cuối báo cáo; Coachsultant DHV sẽ cùng anh/chị đọc trong buổi làm việc.</p>
+    <div class="actions"><button class="btn" onclick="saveOpen('${code}')">${idx===OPEN.length-1?"Hoàn thành và xem báo cáo":"Tiếp tục"}</button></div>`);
+  const ta=document.getElementById("ta"); ta.addEventListener("input",()=>{S.c[code]=ta.value; save();});
+}
+function saveOpen(code){ S.c[code]=document.getElementById("ta").value; go(S.i+1); }
+function resetAll(){ S={i:0,p:{},a:{},c:{},ord:{}}; save(); go(0); }
+
+/* ----- dữ liệu → báo cáo ----- */
+function toData(st, ts){
+  window.__co = (st.p && st.p.company) || "";
+  const num=v=>v===""||v==null?null:Number(v);
+  const dt = ts? new Date(ts) : new Date();
+  return {company: st.p.company||"Tổ chức của anh/chị", date:`Tháng ${dt.getMonth()+1}/${dt.getFullYear()}`,
+    staff:num(st.p.staff), left12m:num(st.p.left12m), leftEarly:num(st.p.leftEarly), ans:st.a, profile:st.p, open:st.c};
+}
+function finish(){
+  if (!S.ts) { S.ts=Date.now(); save(); }
+  if (!S.id) { S.id = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now())+Math.random().toString(16).slice(2)); save(); }
+  app().innerHTML="";
+  document.getElementById("bar").innerHTML = `<div class="bar"><div><b>Báo cáo của anh/chị đã sẵn sàng.</b><br><span class="muted small" id="sendst">Đang gửi kết quả về DHV…</span></div>
+    <div class="actions" style="margin:0"><a class="btn" style="text-decoration:none;background:var(--good);color:#fff" href="${bookingHref()}" target="_blank" rel="noopener" onclick="track('booking')">Đặt lịch đọc kết quả</a><button class="btn ghost" id="pdfbtn" onclick="makePdf()">Tải báo cáo PDF</button><button class="btn ghost" onclick="go(S.i-1)">Sửa câu trả lời</button></div><p id="pdfst" class="muted small" role="status" style="flex-basis:100%;margin:0"></p></div><div id="copybox"></div>`;
+  render(toData(S,S.ts), false);
+  submitResult();
+}
+
+/* ----- tạo và tải PDF ----- */
+let DL = null;
+(async()=>{ try{ if (window.claude && window.claude.use) DL = await window.claude.use("downloads"); }catch(e){} })();
+function pdfName(){
+  const slug = String(window.__co||"to-chuc").normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/đ/g,"d").replace(/Đ/g,"D").replace(/[^A-Za-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,60) || "to-chuc";
+  return `Bao-cao-Dong-luc-Van-hoa-${slug}.pdf`;
+}
+async function makePdf(){
+  const st=document.getElementById("pdfst"), b=document.getElementById("pdfbtn");
+  if (!window.jspdf || !window.html2canvas){ st.textContent="Chưa tải được công cụ tạo PDF. Kiểm tra kết nối mạng rồi tải lại trang."; return; }
+  if (!DL){ try{ if (window.claude && window.claude.use) DL = await window.claude.use("downloads"); }catch(e){} }
+  b.disabled=true;
+  const root=document.documentElement, prev=root.getAttribute("data-theme");
+  root.setAttribute("data-theme","light");
+  const vars=getComputedStyle(root);
+  try{
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF({unit:"mm", format:"a4", compress:true});
+    const W=210, H=297, pages=[...document.querySelectorAll("#report .page")];
+    let first=true;
+    const SCALE = (window.innerWidth<700 || /iPhone|iPad|Android/i.test(navigator.userAgent)) ? 1.15 : 1.6;
+    for (let i=0;i<pages.length;i++){
+      st.textContent=`Đang tạo PDF: phần ${i+1}/${pages.length}…`;
+      const canvas = await html2canvas(pages[i], {scale:SCALE, backgroundColor:"#ffffff", windowWidth:900,
+        onclone:(doc)=>{
+          doc.documentElement.setAttribute("data-theme","light");
+          doc.querySelectorAll("svg *").forEach(el=>["fill","stroke"].forEach(a=>{
+            const v=el.getAttribute(a); if (v && v.includes("var(")){ const m=v.match(/var\((--[\w-]+)/); if(m) el.setAttribute(a, vars.getPropertyValue(m[1]).trim()); }
+          }));
+        }});
+      const pxPerMm = canvas.width/W, pageH = Math.floor(H*pxPerMm);
+      for (let y=0; y<canvas.height; y+=pageH){
+        const h=Math.min(pageH, canvas.height-y);
+        const c=document.createElement("canvas"); c.width=canvas.width; c.height=h;
+        const ctx=c.getContext("2d"); ctx.fillStyle="#ffffff"; ctx.fillRect(0,0,c.width,h);
+        ctx.drawImage(canvas,0,y,canvas.width,h,0,0,canvas.width,h);
+        if (!first) pdf.addPage(); first=false;
+        pdf.addImage(c.toDataURL("image/jpeg",0.8),"JPEG",0,0,W,h/pxPerMm);
+        c.width=0; c.height=0;
+      }
+      canvas.width=0; canvas.height=0;
+      await new Promise(r=>setTimeout(r,30));
+    }
+    if (DL){ st.textContent="Đang chờ anh/chị xác nhận lưu file…"; await DL.save({filename: pdfName(), data: pdf.output("blob")}); }
+    else pdf.save(pdfName());
+    st.textContent="Đã tải file PDF.";
+  }catch(e){
+    const c=e && e.code;
+    st.textContent = c==="declined" ? "Anh/chị đã huỷ lưu file. Bấm lại nút khi sẵn sàng."
+      : c==="rate_limited" ? "Đang có một hộp thoại lưu file mở. Hãy hoàn tất hoặc đóng nó rồi thử lại."
+      : `Chưa tạo được PDF (mã lỗi: ${c || (e && e.message) || "không rõ"}). Anh/chị thử lại trên máy tính, hoặc dùng lệnh In của trình duyệt và chọn Lưu thành PDF.`;
+  }finally{
+    if (prev==null) root.removeAttribute("data-theme"); else root.setAttribute("data-theme",prev);
+    b.disabled=false;
+  }
+}
+
+/* ----- sao chép kết quả dạng văn bản ----- */
+function resultText(){
+  const d = toData(S, S.ts), r = compute(d), p = d.profile || {};
+  const ans = k => { const v=d.ans[k];
+    if (v==="e") return "Tôi không biết";
+    if (v==="f") return "Chưa gặp trường hợp này";
+    if (k==="B8") return Array.isArray(v)&&v.length ? v.join(", ") : "Chưa có quy trình nào";
+    const i="abcd".indexOf(v); return i>=0 ? Q[k].o[i] : "–"; };
+  const L = [];
+  L.push("BÁO CÁO ĐỘNG LỰC & VĂN HOÁ TỔ CHỨC",
+    `CEO: ${p.name||"–"} | Công ty: ${p.company||"–"} | Ngành: ${p.industry||"–"}`,
+    `Năm hoạt động: ${p.years||"–"} | Nhân sự: ${p.staff||"–"} | Nghỉ việc 12 tháng: ${p.left12m||"–"} (trong 6 tháng đầu: ${p.leftEarly||"–"})`,
+    `Thời điểm: ${d.date}`, "",
+    `CHỈ SỐ ĐỘNG LỰC TRUNG BÌNH: ${f1(r.overall)} (${bandName[band(r.overall)]})`);
+  AREAS.forEach(a=>{ L.push("", `${a.n}: ${f1(r.area[a.k])}`); a.items.forEach(k=>L.push(`  ${k}. ${Q[k].n}: ${f1(r.s[k])} — ${ans(k)}`)); });
+  L.push("", `VĂN HOÁ TỔ CHỨC — Cách quản trị: ${r.govName} | Cấp độ ${r.level}/5: ${LEVELS[r.level][0]}`);
+  CULT.forEach(c=>{ L.push("", `${c.n}: ${f1(r.cult[c.k])}`); c.items.forEach(k=>L.push(`  ${k}. ${Q[k].n}: ${f1(r.s[k])} — ${ans(k)}`)); });
+  L.push("", "ĐIỂM MÙ: " + (r.blind.length ? r.blind.map(k=>Q[k].n).join("; ") : "không có"));
+  L.push("CỜ CẢNH BÁO: " + (r.flags.length ? r.flags.map(f=>f[0]).join("; ") : "không có"));
+  L.push("", "CÂU HỎI MỞ");
+  OPEN.forEach(o=>L.push("", `${o[0]}. ${o[1]}`, (d.open||{})[o[0]] || "(không trả lời)"));
+  return L.join("\n");
+}
+async function copyResult(){
+  const st=document.getElementById("pdfst"), box=document.getElementById("copybox"), txt=resultText();
+  const ok="Đã sao chép kết quả. Anh/chị mở Zalo, dán vào tin nhắn và gửi cho DHV.";
+  try{ await navigator.clipboard.writeText(txt); st.textContent=ok; box.innerHTML=""; }
+  catch(e){
+    box.innerHTML = `<div class="sendbox"><p><b>Sao chép kết quả</b></p><p class="muted small">Thiết bị chưa cho sao chép tự động. Anh/chị giữ ngón tay lên vùng chữ bên dưới, chọn Chọn tất cả rồi Sao chép, sau đó dán vào Zalo gửi DHV.</p><textarea id="rtxt" rows="10" readonly>${esc(txt)}</textarea></div>`;
+    const ta=document.getElementById("rtxt"); ta.focus(); ta.select();
+    try{ ta.setSelectionRange(0, ta.value.length); }catch(_){}
+    try{ if (document.execCommand("copy")) st.textContent=ok; }catch(_){}
+    box.scrollIntoView({behavior:"smooth", block:"center"});
+  }
+}
+
+/* ----- mã hoá kết quả thành link ----- */
+function b64u(bytes){ let s=""; bytes.forEach(b=>s+=String.fromCharCode(b)); return btoa(s).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,""); }
+function unb64u(t){ t=t.replace(/-/g,"+").replace(/_/g,"/"); while(t.length%4)t+="="; const s=atob(t); return Uint8Array.from(s,ch=>ch.charCodeAt(0)); }
+async function packResult(){
+  const raw = new TextEncoder().encode(JSON.stringify({v:1,ts:S.ts,p:S.p,a:S.a,c:S.c}));
+  if (typeof CompressionStream!=="undefined"){
+    try{ const cs=new Blob([raw]).stream().pipeThrough(new CompressionStream("deflate-raw"));
+      const buf=new Uint8Array(await new Response(cs).arrayBuffer()); return "rz"+b64u(buf);}catch(e){}
+  }
+  return "rj"+b64u(raw);
+}
+async function unpackResult(tok){
+  let bytes = unb64u(tok.slice(2));
+  if (tok.startsWith("rz")){ const ds=new Blob([bytes]).stream().pipeThrough(new DecompressionStream("deflate-raw")); bytes=new Uint8Array(await new Response(ds).arrayBuffer()); }
+  return JSON.parse(new TextDecoder().decode(bytes));
+}
+/* ----- gửi kết quả về Google Sheet ----- */
+function post(payload){
+  if (!CONFIG.SUBMIT_URL) return Promise.reject(new Error("no-url"));
+  // text/plain để tránh CORS preflight; Apps Script vẫn đọc được e.postData.contents
+  return fetch(CONFIG.SUBMIT_URL, {method:"POST", mode:"no-cors", headers:{"Content-Type":"text/plain;charset=utf-8"}, body: JSON.stringify(payload)});
+}
+async function submitResult(){
+  const st = document.getElementById("sendst");
+  const d = toData(S, S.ts), r = compute(d);
+  const ans = {}; CODES.forEach(k=>{ const v=S.a[k]; ans[k] = Array.isArray(v)? v.join("; ") : v; });
+  const sc = {}; CODES.forEach(k=>sc[k]= r.s[k]==null? "" : Math.round(r.s[k]*10)/10);
+  const payload = {type:"submit", id:S.id, ts:new Date(S.ts).toISOString(), profile:S.p, open:S.c, answers:ans, scores:sc,
+    summary:{overall:f1(r.overall), exp:f1(r.area.exp), fun:f1(r.area.fun), org:f1(r.area.org), per:f1(r.area.per),
+      lead:f1(r.cult.lead), int:f1(r.cult.int), sys:f1(r.cult.sys), gov:r.govName, level:`${r.level}: ${LEVELS[r.level][0]}`,
+      turnover: r.turnover==null?"":f1(r.turnover), early: r.early==null?"":f1(r.early),
+      blind:r.blind.map(k=>Q[k].n).join("; "), flags:r.flags.map(f=>f[0]).join("; ")},
+    link: ARTIFACT_URL + "#" + await packResult()};
+  try{
+    await post(payload);
+    S.sent = true; save();
+    if (st) st.textContent = "Kết quả đã được gửi về DHV. Bước tiếp theo: chọn giờ đọc kết quả cùng chuyên gia DHV.";
+  }catch(e){
+    if (st) st.textContent = CONFIG.SUBMIT_URL ? "Chưa gửi được kết quả (mất kết nối?). Tải lại trang để thử gửi lại." : "Chế độ thử: chưa cấu hình nơi nhận dữ liệu.";
+  }
+}
+function track(ev){
+  if (!CONFIG.SUBMIT_URL || !S.id) return;
+  const body = JSON.stringify({type:"event", id:S.id, event:ev, ts:new Date().toISOString()});
+  try{ if (navigator.sendBeacon && navigator.sendBeacon(CONFIG.SUBMIT_URL, new Blob([body],{type:"text/plain;charset=utf-8"}))) return; }catch(e){}
+  post(JSON.parse(body)).catch(()=>{});
+}
+function teamInterest(btn){
+  track("team_survey");
+  btn.closest(".team-slot").innerHTML = `<b>Đã ghi nhận.</b> <span class="muted">DHV sẽ liên hệ anh/chị để chuẩn bị khảo sát đội ngũ.</span>`;
+}
+
+/* ----- khởi động ----- */
+(async function init(){
+  const h = location.hash.slice(1);
+  if (h.startsWith("rz")||h.startsWith("rj")){
+    try{
+      const o = await unpackResult(h);
+      document.getElementById("bar").innerHTML = `<div class="bar"><div><b>Bản dành cho DHV</b><br><span class="muted small">${esc(o.p.name||"")}${o.p.name?", ":""}${esc(o.p.company||"")}. Phần câu hỏi mở nằm ở trang “Giá trị tuyên bố và giá trị đang thực sống”.</span></div><div class="actions" style="margin:0"><button class="btn" id="pdfbtn" onclick="makePdf()">Tải PDF</button></div><p id="pdfst" class="muted small" role="status" style="flex-basis:100%;margin:0"></p></div>`;
+      render(toData({p:o.p,a:o.a,c:o.c}, o.ts), true);
+      return;
+    }catch(e){
+      app().innerHTML = `<section class="page"><h2>Không đọc được kết quả</h2><p>Đường link có thể bị cắt mất một phần khi gửi. Hãy nhờ người gửi sao chép lại toàn bộ link và gửi lại.</p></section>`;
+      return;
+    }
+  }
+  load(); draw();
+})();
+
+</script>
+</body>
+</html>
